@@ -1,0 +1,53 @@
+<nav class="navbar fixed-top navbar-expand-lg navbar-light" style="background-color: #42b649">
+    <a class="navbar-brand" href="<%= root_path %> ">Logo</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <% if user_signed_in? %>
+          <%# if current_user.admin? or current_user.professional?%>
+          <% if can?(:create, :program) %>
+            <li class="nav-item">
+              <%= link_to "Contratos", user_contracts_path, class: 'nav-link'%>
+            </li>
+            <li class="nav-item">
+              <%= link_to "Programas(x)", user_programs_path, class: 'nav-link'%>
+            </li>
+          <% end %>
+        <% end %>
+      </ul>
+      <ul class="navbar-nav ml-auto">
+        <% if user_signed_in? and current_user.role == 'guest'%>
+          <li class="nav-item">
+            <% if current_user.name.present? %>
+              <%= link_to current_user.name, profile_path, class: 'nav-link' %>
+            <% else %>
+              <%= link_to current_user.email, profile_path, class: 'nav-link' %>
+            <% end %>
+          </li>
+          <li class="nav-item">
+            <%= link_to "Cerrar Sesion", destroy_user_session_path, method: :delete, class: 'nav-link' %>
+          </li>
+        <% elsif user_signed_in? and current_user.role != 'guest'%>
+          <li class="nav-item">
+            <% if current_user.name.present? %>
+              <%= link_to current_user.name, user_contracts_path, class: 'nav-link' %>
+            <% else %>
+              <%= link_to current_user.email, user_contracts_pathh, class: 'nav-link' %>
+            <% end %>
+          </li>
+          <li class="nav-item">
+            <%= link_to "Cerrar Sesion", destroy_user_session_path, method: :delete, class: 'nav-link' %>
+          </li>
+        <% else %>
+          <li class="nav-item">
+            <%= link_to 'Iniciar Sesión', new_user_session_path, class: 'nav-link' %>
+          </li>
+          <li class="nav-item">
+            <%= link_to 'Registrarse', new_user_registration_path, class: 'nav-link' %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+</nav>

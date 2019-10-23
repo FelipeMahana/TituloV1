@@ -1,0 +1,77 @@
+<h4>Tabla de usuarios con planes pendientes</h4>
+<table class="table table-striped table-hover ">
+  <thead>
+    <tr>
+      <th>Usuario</th>
+      <th>Plan</th>
+      <th>Fecha Contrato</th>
+      <th>Duracion Plan(mes)</th>
+      <th>Fecha Termino Plan</th>
+      <th></th>
+      <th>ids(comprobacion)</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @users.order("created_at").each do |user| %>
+      <% if user.contracts.present? and user.contracts.last.pending == true %>
+        <tr>
+          <% if user.name.present? %>
+            <td><%= user.name %></td>
+          <% else %>
+            <td><%= user.email %></td>
+          <% end %>
+          <td>
+            <% unless user.contracts.last.nil? %>
+              <% unless user.contracts.last.plan.nil? %>
+                <% if user.contracts.last.plan.contract_type == 1%>
+                  Plan Entrenamiento
+                <% elsif user.contracts.last.plan.contract_type == 2 %>
+                  Plan Nutricional
+                <% else %>
+                  Plan Entrenamiento y Nutrición
+                <% end %>
+              <% end %>
+            <% end %>
+          </td>
+
+          <!-- ruby toma 1 mes como 2629746 segs (user.contracts.last.try(:created_at) + 2629746)-->
+
+          <td>
+              <% unless user.contracts.last.nil? %>
+                <% start_date_conract=user.contracts.last.created_at %>
+                <%#= user.contracts.last.created_at %>
+                <%= user.contracts.last.created_at.strftime('%d/%m/%Y') %>
+              <% end %>
+          </td>
+
+          <td>
+            <% unless user.contracts.last.nil? %>
+              <% unless user.contracts.last.plan.nil? %>
+                <% duration_plans_mont=user.contracts.last.plan.duration.month %>
+                <%= user.contracts.last.plan.duration %>
+              <% end %>
+            <% end %>
+          </td>
+
+          <td>
+            <% end_date_contract=(start_date_conract+duration_plans_mont)%>
+            <%= end_date_contract.strftime('%d/%m/%Y')  %>
+          </td>
+
+          <td>
+            <%= link_to "Realizar programa", new_plan_contract_user_program_path(user.contracts.last.plan.id,user.contracts.last.id,user.id), :class=>"btn btn-success"%>
+            <%#= link_to "Realizar programa", new_plan_contract_user_program_path(user.contracts.last.plan.id,user.contracts.last.id,user.id) %>
+          </td>
+          <td>
+            <!-- revisar parametros -->
+            <%= user.contracts.last.plan.id %>
+            <%= user.contracts.last.id %>
+            <%= user.id %>
+          </td>
+        </tr>
+      <% end %>
+    <% end %>
+  </tbody>
+</table>

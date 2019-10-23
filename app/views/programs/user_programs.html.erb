@@ -1,0 +1,48 @@
+<h4>Tabla con usuarios y solicitud de edicion</h4>
+<h5>Aun no terminado(no lista solo el ultimo)</h5> 
+<table class="table table-striped table-hover ">
+  <thead>
+    <tr>
+      <th>Usuario</th>
+      <th>Plan</th>
+      <th>Duracion</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @programs.order("created_at").each do |program| %>
+        <tr>
+          <% if program.contract.user.name.present? %>
+            <td><%= program.contract.user.name %></td>
+          <% else %>  
+            <td><%= program.contract.user.email %></td>
+          <% end %>
+          <td>
+            <% if program.contract.plan.contract_type == 1 %>
+              Plan Entrenamiento
+            <% elsif program.contract.plan.contract_type == 2 %>
+              Plan Nutricional
+            <% else %>
+              Plan Entrenamiento y Nutricional
+            <% end %>
+          </td>
+
+          <td>
+            <%= program.contract.plan.duration %>
+          </td>
+
+
+          <td>
+             <!-- revisar parametros -->
+            <%= program.contract.plan.id %>
+            <%= program.contract.id %>
+            <%= program.contract.user.id %>
+            <%= program.id %>
+            
+            <%= link_to "Editar", edit_plan_contract_user_program_path(program.contract.plan.id,program.contract.id,program.contract.user.id,program.id) %>
+            </td>
+        </tr>      
+    <% end %>
+  </tbody>
+</table>
