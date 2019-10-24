@@ -1,5 +1,5 @@
 <div class="row">
-	<div class="col-md-4 mb-4">
+	<div class="col-md-6 mb-4">
 		<h3>Perfil</h3>
 		<% if current_user.name.present? %>
 			<p>  Nombre: <%= current_user.name %> </p>
@@ -7,78 +7,102 @@
 		<% else %>
 			<p>  Correo: <%= current_user.email %> </p>
 		<% end %>
-		<h5>Datos</h5>
-		<div class="card">
-			<div class="card-body">
-				<p>Edad: <%= current_user.contracts.last.age %></p>
-				<% if current_user.contracts.last.sex == 1 %>
-					<p> Sexo: Masculino </p>
-				<% else %>
-					<p>Sexo: Femenino </p>
-				<% end %>
-				<p>Peso: <%= current_user.contracts.last.weight %> kg</p>
-				<p>Estatura: <%= current_user.contracts.last.height %> cms </p>
+	</div>
+</div>
+
+
+<div class="row">
+	<div class="col-md-12">
+		<div class="row">
+			<div class="col-md-6 mb-1">
+				<h5>Datos</h5>
+					<div class="card">
+						<div class="card-body">
+							<p>Edad: <%= current_user.contracts.last.age %></p>
+							<% if current_user.contracts.last.sex == 1 %>
+								<p> Sexo: Masculino </p>
+							<% else %>
+								<p>Sexo: Femenino </p>
+							<% end %>
+								<p>Peso: <%= current_user.contracts.last.weight %> kg</p>
+								<p>Estatura: <%= current_user.contracts.last.height %> cms </p>
+						</div>
+					</div>
+			</div>
+			<div class="col-md-6 ">
+				<h5>Datos Entreador</h5>
+					<div class="card">
+						<div class="card-body">
+							<% if current_user.contracts.last.programs.last.coach_name.present? %>
+								<p>Nombre: <%= current_user.contracts.last.programs.last.coach_name %></p>
+								<p>Correo: <%= current_user.contracts.last.programs.last.coach_mail %></p>
+							<% else %>
+								<p>Correo: <%= current_user.contracts.last.programs.last.coach_mail %></p>
+							<% end %>
+						</div>
+					</div>
 			</div>
 		</div>
 	</div>
 </div>
-		<div class="row">
-			<div class="col-md-12">
-				<h4>Entrenamiento</h4>
-					<% if current_user.contracts.last.try(:programs).present? %>
-						<% if current_user.contracts.last.plan.contract_type==1 %>
-							<div class="row">
-								<div class="col-md-6 mb-4">
-									<div class="card">
-										<div class="card-body">
-											<h5>Rutina entrenamiento</h5>
-											<p><%= simple_format(current_user.contracts.last.programs.last.training) %></p>
-										</div>
-									</div>
-								</div>
-							</div>
-						<% elsif current_user.contracts.last.plan.contract_type==2 %>
-							<div class="row">
-								<div class="col-md-6 mb-4">
-									<div class="card">
-										<div class="card-body">
-											<h5>Plan Nutricional</h5>
-											<p><%= simple_format(current_user.contracts.last.programs.last.nutrition) %></p>
-										</div>
-									</div>
-								</div>
-							</div>
-						<% else %>
-						<div class="row">
-							<div class="col-md-6 mb-1">
-									<div class="card">
-										<div class="card-body">
-											<h5>Rutina entrenamiento</h5>
-											<p><%= simple_format(current_user.contracts.last.programs.last.training) %></p>
-										</div>
-									</div>
-								</div>
-								<div class="col-md-6 ">
-									<div class="card">
-										<div class="card-body">
-											<h5>Plan Nutricional</h5>
-											<p><%= simple_format(current_user.contracts.last.programs.last.nutrition) %></p>
-										</div>
-									</div>
-								</div>
-							</div>
-						<% end %>
-					<% else %>
-						<div class="row">
-							<div class="col-md-4 mb-4">
-								<div class="card">
-									<div class="card-body">
-									<p>No tiene rutina de entrenamiento</p>
-									</div>
+
+<div class="row">
+	<div class="col-md-12">
+		<h4>Entrenamiento</h4>
+			<% if current_user.contracts.last.try(:programs).present? %>
+				<% if current_user.contracts.last.plan.contract_type==1 %>
+					<div class="row">
+						<div class="col-md-6 mb-4">
+							<div class="card">
+								<div class="card-body">
+									<h5>Rutina entrenamiento</h5>
+									<p><%= simple_format(current_user.contracts.last.programs.last.training) %></p>
 								</div>
 							</div>
 						</div>
-					<% end %>
-			</div>
-		</div>
+					</div>
+				<% elsif current_user.contracts.last.plan.contract_type==2 %>
+					<div class="row">
+						<div class="col-md-6 mb-4">
+							<div class="card">
+								<div class="card-body">
+									<h5>Plan Nutricional</h5>
+									<p><%= simple_format(current_user.contracts.last.programs.last.nutrition) %></p>
+								</div>
+							</div>
+						</div>
+					</div>
+				<% else %>
+				<div class="row">
+					<div class="col-md-6 mb-1">
+							<div class="card">
+								<div class="card-body">
+									<h5>Rutina entrenamiento</h5>
+									<p><%= simple_format(current_user.contracts.last.programs.last.training) %></p>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-6 ">
+							<div class="card">
+								<div class="card-body">
+									<h5>Plan Nutricional</h5>
+									<p><%= simple_format(current_user.contracts.last.programs.last.nutrition) %></p>
+								</div>
+							</div>
+						</div>
+					</div>
+				<% end %>
+			<% else %>
+				<div class="row">
+					<div class="col-md-4 mb-4">
+						<div class="card">
+							<div class="card-body">
+							<p>No tiene rutina de entrenamiento</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			<% end %>
+	</div>
+</div>
 <br>

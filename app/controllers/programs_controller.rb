@@ -6,7 +6,7 @@ class ProgramsController < ApplicationController
     before_action :set_plan, only: [:new, :edit, :show, :update]
     before_action :program_params, only: [:create, :update]
     authorize_resource
-    
+
     def user_programs
         @programs = Program.all
     end
@@ -16,7 +16,7 @@ class ProgramsController < ApplicationController
     end
 
     def edit
-      
+
     end
 
 
@@ -24,9 +24,9 @@ class ProgramsController < ApplicationController
 
     end
 
-    def update  
+    def update
         @program.contract_id = params[:contract_id]
-        @program.update(program_params)    
+        @program.update(program_params)
         if @program.update(program_params)
             redirect_to user_programs_path, notice: 'El programa se a actualizado con exito'
         else
@@ -38,6 +38,9 @@ class ProgramsController < ApplicationController
         @program = Program.new(program_params)
         @program.contract = @contract
         @contract.pending = false
+        #obteniendo al entrenador
+        @program.coach_mail = current_user.email
+        @program.coach_name = current_user.name
 
         if @program.save and @contract.save
              redirect_to user_contracts_path, notice: 'Se creo programa con exito'
@@ -49,13 +52,13 @@ class ProgramsController < ApplicationController
     private
 
 
-    def program_params	 
+    def program_params
 		params.require(:program).permit(:training, :nutrition, :plan_id, :contract_id, :user_id)
 	end
 
     def set_program
         @program = Program.find(params[:id])
-    end 
+    end
 
     def set_user
         @user = User.find(params[:user_id])
