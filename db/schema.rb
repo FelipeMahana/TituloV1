@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180408044701) do
+ActiveRecord::Schema.define(version: 20191023195938) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -46,6 +46,8 @@ ActiveRecord::Schema.define(version: 20180408044701) do
     t.integer "sex"
     t.boolean "pending", default: false
     t.bigint "billing_id"
+    t.date "start_date"
+    t.date "end_date"
     t.index ["billing_id"], name: "index_contracts_on_billing_id"
     t.index ["plan_id"], name: "index_contracts_on_plan_id"
     t.index ["user_id"], name: "index_contracts_on_user_id"

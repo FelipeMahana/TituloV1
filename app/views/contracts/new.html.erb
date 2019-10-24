@@ -1,25 +1,29 @@
 <h4>Formualrio Primera parte</h4>
 <h5>Datos basicos</h5>
 
-<div class="row">	
+<div class="row">
 	<div class="col-md-4 mb-4">
 		<%=form_with(model: [@plan, @contract], local: true) do |form| %>
-			<%=form.label :peso %> 
+			<%=form.label :peso %>
 			<em>(Kg)</em><br>
-			<%=form.number_field :weight %>
+			<%=form.number_field :weight, in: 10...200 %>
 			<br>
 			<%=form.label :estatura %>
 			<em>(Cms)</em> <br>
-			<%=form.number_field :height %>
+			<%=form.number_field :height, in: 55...273 %>
 			<br>
 			<%=form.label :edad %> <br>
 			<%=form.number_field :age, in: 1...131 %>
 			<br>
+			<%=form.label :sexo %> <br>
+			<%=form.select(:sex, options_for_select([['Hombre', 1], ['Mujer', 2]])) %>
+			<br>
+			<%=form.label :objetivo %> <br>
+			<%=form.text_area :goal %>
 			<br>
 			<%=form.label :porcentaje_de_grasa %>
 			<em>(Opcional)</em> <br>
 			<%=form.number_field :fat_percentage, in: 1...101 %>
-			<br>
 			<br>
 			<%= form.submit 'crear' %>
 			<br>
@@ -42,12 +46,6 @@
 				<p class="card-text">La duracion del plan <%= @plan.duration %> mes o meses</p>
 				<p class="card-text"><%= @plan.description %> </p>
 		 	</div>
-		</div>		  
+		</div>
 	</div>
 </div>
-
-
-
-
-
-

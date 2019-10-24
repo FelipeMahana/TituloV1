@@ -1,7 +1,7 @@
 class ContractsController < ApplicationController
 	before_action :authenticate_user!, only: [:new, :edit, :show]
 	before_action :set_params, only: [:create, :update]
-	before_action :set_plan, only: [:new, :edit, :update]
+	before_action :set_plan, only: [:new, :edit, :update, :create]
 	before_action :set_contract, only: [:edit, :show, :update]
 
 	def new
@@ -45,26 +45,33 @@ class ContractsController < ApplicationController
 		else
 			bmr_calculado = basal_metabolic_rate * 1.95
 		end
-		@contract.bmr = bmr_calculado
+		#@contract.bmr = bmr_calculado
 
-		@contract.heart_rate = 220 - @contract.age
+		#@contract.heart_rate = 220 - @contract.age
 
-		@contract.pending = true
-		@contract.update(set_params)
+		#@contract.pending = true
+		#@contract.update(set_params)
 
 		#esto va a paypal
 		#redirect_to pre_pay_billings_path
 		#normal
-		redirect_to plan_contract_path(@contract.plan_id, @contract)
+		#redirect_to plan_contract_path(@contract.plan_id, @contract)
 	end
 
 	def create
 		@contract = Contract.new(set_params)
 		@contract.plan_id = params[:plan_id]
 		@contract.user_id = current_user.id
+		@contract.pending = true
+		@contract.start_date = DateTime.now.strftime "%d/%m/%Y"
+    if @plan.duration == 1
+      @contract.end_date = DateTime.now.next_month.strftime "%d/%m/%Y"
+    else @plan.duration == 3
+      @contract.end_date = @contract.start_date >> 3
+    end
 		@contract.save
 		if @contract.save
-             redirect_to edit_plan_contract_path(@contract.plan.id, @contract), notice: 'Se creo contrato con exito'
+             redirect_to plan_contract_path(@contract.plan.id, @contract), notice: 'Se creo contrato con exito'
        else
              redirect_to new_plan_contract_path(@contract.plan_id), notice: 'No se pudo crear contrato'
        end
@@ -73,7 +80,7 @@ class ContractsController < ApplicationController
 	private
 
 	def set_params
-		params.require(:contract).permit(:weight, :height, :age, :sex, :activity_level, :bmi, :disease, :allergies, :bmr, :karvonen, :heart_rate, :commit, :goal, :fat_percentage, :plan_id)
+		params.require(:contract).permit(:weight, :height, :age, :sex, :activity_level, :bmi, :disease, :allergies, :bmr, :karvonen, :heart_rate, :commit, :goal, :fat_percentage, :plan_id, :end_date, :start_date)
 	end
 
 	def set_contract
