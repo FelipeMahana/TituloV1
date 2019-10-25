@@ -1,0 +1,57 @@
+<%= form_with(model: result, local: true) do |form| %>
+  <% if result.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(result.errors.count, "error") %> prohibited this result from being saved:</h2>
+
+      <ul>
+      <% result.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :date %>
+    <%= form.date_select :date, id: :result_date %>
+  </div>
+
+  <div class="field">
+    <%= form.label :cincuenta_mts %>
+    <%= form.number_field :cincuenta_mts, id: :result_cincuenta_mts %>
+  </div>
+
+  <div class="field">
+    <%= form.label :cien_mts %>
+    <%= form.number_field :cien_mts, id: :result_cien_mts %>
+  </div>
+
+  <div class="field">
+    <%= form.label :doscientos_mts %>
+    <%= form.number_field :doscientos_mts, id: :result_doscientos_mts %>
+  </div>
+
+  <div class="field">
+    <%= form.label :cuatrocientos_mts %>
+    <%= form.number_field :cuatrocientos_mts, id: :result_cuatrocientos_mts %>
+  </div>
+
+  <div class="field">
+    <%= form.label :ochocientos_mts %>
+    <%= form.number_field :ochocientos_mts, id: :result_ochocientos_mts %>
+  </div>
+
+  <div class="field">
+    <%= form.label :mil_quinientos_mts %>
+    <%= form.number_field :mil_quinientos_mts, id: :result_mil_quinientos_mts %>
+  </div>
+
+  <div class="field">
+    <%= form.label :user_id %>
+    <%= form.text_field :user_id, id: :result_user_id %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

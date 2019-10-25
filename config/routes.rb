@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
 
+  resources :results
   #get 'programs/index'
 
   	devise_for :users, controllers: {

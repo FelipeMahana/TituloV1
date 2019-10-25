@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  date: 2019-10-25
+  cincuenta_mts: 1
+  cien_mts: 1
+  doscientos_mts: 1
+  cuatrocientos_mts: 1
+  ochocientos_mts: 1
+  mil_quinientos_mts: 1
+  user: one
+
+two:
+  date: 2019-10-25
+  cincuenta_mts: 1
+  cien_mts: 1
+  doscientos_mts: 1
+  cuatrocientos_mts: 1
+  ochocientos_mts: 1
+  mil_quinientos_mts: 1
+  user: two
