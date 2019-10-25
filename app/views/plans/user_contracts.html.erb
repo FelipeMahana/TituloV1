@@ -8,8 +8,10 @@
       <th>Duracion Plan(mes)</th>
       <th>Fecha Termino Plan</th>
       <th></th>
+      <!--
       <th>ids(comprobacion)</th>
-      <th colspan="3"></th>
+
+      <th colspan="3"></th>-->
     </tr>
   </thead>
 
@@ -35,17 +37,16 @@
               <% end %>
             <% end %>
           </td>
-
-          <!-- ruby toma 1 mes como 2629746 segs (user.contracts.last.try(:created_at) + 2629746)-->
-
+          <!--start date-->
           <td>
               <% unless user.contracts.last.nil? %>
                 <% start_date_conract=user.contracts.last.created_at %>
                 <%#= user.contracts.last.created_at %>
                 <%= user.contracts.last.created_at.strftime('%d/%m/%Y') %>
+                <%#= user.contracts.last.start_date%>
               <% end %>
           </td>
-
+          <!--duracion-->
           <td>
             <% unless user.contracts.last.nil? %>
               <% unless user.contracts.last.plan.nil? %>
@@ -54,22 +55,26 @@
               <% end %>
             <% end %>
           </td>
-
+          <!--termino-->
           <td>
             <% end_date_contract=(start_date_conract+duration_plans_mont)%>
             <%= end_date_contract.strftime('%d/%m/%Y')  %>
+            <%#= user.contracts.last.end_date%>
           </td>
 
           <td>
             <%= link_to "Realizar programa", new_plan_contract_user_program_path(user.contracts.last.plan.id,user.contracts.last.id,user.id), :class=>"btn btn-success"%>
             <%#= link_to "Realizar programa", new_plan_contract_user_program_path(user.contracts.last.plan.id,user.contracts.last.id,user.id) %>
           </td>
+
+          <!--
           <td>
-            <!-- revisar parametros -->
             <%= user.contracts.last.plan.id %>
             <%= user.contracts.last.id %>
             <%= user.id %>
           </td>
+          //-->
+
         </tr>
       <% end %>
     <% end %>

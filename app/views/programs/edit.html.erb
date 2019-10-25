@@ -3,7 +3,7 @@
 <% elsif @plan.contract_type == 2 %>
 	<h3>Realización de Plan Nutricional </h3>
 <% else %>
-	<h3>Realización de Plan Entrenamiento y nutricion</h3> 
+	<h3>Realización de Plan Entrenamiento y nutricion</h3>
 <% end %>
 
 
@@ -21,7 +21,7 @@
 				<p class="card-text">Duracion plan: </p>
 				<p class="card-text">Descripcion o tipo(?): <%= @plan.description %> </p>
 		 	</div>
-		</div>		  
+		</div>
 	</div>
 	<div class="offset-md-2 col-md-4 mb-4">
 		<div class="card">
@@ -35,10 +35,8 @@
 				<% end %>
 				<p class="card-text">Peso: <%= @contract.weight %> kg </p>
 				<p class="card-text">Estatura: <%= @contract.height %> cms </p>
-				<p class="card-text">BMR: <%= @contract.bmr %> Kcal</p>
-				<p class="card-text">Actividad Fisica: <%= @contract.activity_level %> </p>
 		 	</div>
-		</div>		  
+		</div>
 	</div>
 </div>
 
@@ -47,7 +45,7 @@
 
 <% if @plan.contract_type == 1 %>
 
-	<div class="row">	
+	<div class="row">
 		<div class="col-md-4 mb-4">
 			<%=form_with(model: [@plan, @contract, @user ,@program], local: true) do |form| %>
 				<%=form.label :training %> <br>
@@ -62,7 +60,7 @@
 
 <% elsif @plan.contract_type == 2 %>
 
-	<div class="row">	
+	<div class="row">
 		<div class="col-md-4 mb-4">
 			<%=form_with(model: [@plan, @contract, @user ,@program], local: true) do |form| %>
 				<%=form.label :nutrition %> <br>
@@ -77,7 +75,7 @@
 
 <% else %>
 
-	<div class="row">	
+	<div class="row">
 		<div class="col-md-4 mb-4">
 		<%=form_with(model: [@plan, @contract, @user ,@program], local: true) do |form| %>
 			<%=form.label :training %> <br>
