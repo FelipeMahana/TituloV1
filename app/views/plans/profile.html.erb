@@ -30,14 +30,16 @@
 					</div>
 			</div>
 			<div class="col-md-6 ">
-				<h5>Datos Entreador</h5>
+				<h5>Datos Entrenador</h5>
 					<div class="card">
 						<div class="card-body">
-							<% if current_user.contracts.last.programs.last.coach_name.present? %>
+							<% if current_user.contracts.last.programs.last.try(:coach_name).present? %>
 								<p>Nombre: <%= current_user.contracts.last.programs.last.coach_name %></p>
 								<p>Correo: <%= current_user.contracts.last.programs.last.coach_mail %></p>
+							<% elsif current_user.contracts.last.programs.last.try(:coach_mail).present? %>
+								<p>Correo: <%= current_user.contracts.last.programs.last.try(:coach_mail) %></p>
 							<% else %>
-								<p>Correo: <%= current_user.contracts.last.programs.last.coach_mail %></p>
+								<p>No tiene enrenador asociado</p>
 							<% end %>
 						</div>
 					</div>
@@ -94,7 +96,7 @@
 				<% end %>
 			<% else %>
 				<div class="row">
-					<div class="col-md-4 mb-4">
+					<div class="col-md-6 mb-6">
 						<div class="card">
 							<div class="card-body">
 							<p>No tiene rutina de entrenamiento</p>
