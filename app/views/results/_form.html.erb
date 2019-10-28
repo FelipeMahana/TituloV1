@@ -1,0 +1,57 @@
+<%= form_with(model: [@result.user, @result]) do |f| %>
+  <% if @result.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@result.errors.count, "error") %> prohibited this result from being saved:</h2>
+
+      <ul>
+      <% @result.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :date %><br />
+    <%= f.date_select :date %>
+  </div>
+  <div class="field">
+    <%= f.label :hundred_mts %><br />
+    <%= f.text_field :hundred_mts %>
+  </div>
+  <div class="field">
+    <%= f.label :two_hundred_mts %><br />
+    <%= f.text_field :two_hundred_mts %>
+  </div>
+  <div class="field">
+    <%= f.label :three_hundred_mts %><br />
+    <%= f.text_field :three_hundred_mts %>
+  </div>
+  <div class="field">
+    <%= f.label :four_hundred_mts %><br />
+    <%= f.text_field :four_hundred_mts %>
+  </div>
+  <div class="field">
+    <%= f.label :eight_hundred_mts %><br />
+    <%= f.text_field :eight_hundred_mts %>
+  </div>
+  <div class="field">
+    <%= f.label :thousand_mts %><br />
+    <%= f.text_field :thousand_mts %>
+  </div>
+  <div class="field">
+    <%= f.label :thousand_five_hundred_mts %><br />
+    <%= f.text_field :thousand_five_hundred_mts %>
+  </div>
+  <div class="field">
+    <%= f.label :cooper_test %><br />
+    <%= f.text_field :cooper_test %>
+  </div>
+  <div class="field">
+    <%= f.label :squat_rm %><br />
+    <%= f.text_field :squat_rm %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

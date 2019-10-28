@@ -37,6 +37,7 @@ gem 'devise'
 gem 'faker'
 gem 'paypal-sdk-rest'
 gem 'rails-erd', require: false, group: :development
+gem 'nested_scaffold'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

@@ -1,0 +1,55 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Date:</b>
+  <%= @result.date %>
+</p>
+
+<p>
+  <b>Hundred mts:</b>
+  <%= @result.hundred_mts %>
+</p>
+
+<p>
+  <b>Two hundred mts:</b>
+  <%= @result.two_hundred_mts %>
+</p>
+
+<p>
+  <b>Three hundred mts:</b>
+  <%= @result.three_hundred_mts %>
+</p>
+
+<p>
+  <b>Four hundred mts:</b>
+  <%= @result.four_hundred_mts %>
+</p>
+
+<p>
+  <b>Eight hundred mts:</b>
+  <%= @result.eight_hundred_mts %>
+</p>
+
+<p>
+  <b>Thousand mts:</b>
+  <%= @result.thousand_mts %>
+</p>
+
+<p>
+  <b>Thousand five hundred mts:</b>
+  <%= @result.thousand_five_hundred_mts %>
+</p>
+
+<p>
+  <b>Cooper test:</b>
+  <%= @result.cooper_test %>
+</p>
+
+<p>
+  <b>Squat rm:</b>
+  <%= @result.squat_rm %>
+</p>
+
+
+<%= link_to 'Edit', edit_user_result_path(@result.user, @result) %> |
+<%= link_to 'Back', user_results_path(@result.user) %>

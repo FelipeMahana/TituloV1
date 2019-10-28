@@ -1,0 +1,27 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user: one
+  date: 2019-10-28
+  hundred_mts: 
+  two_hundred_mts: 
+  three_hundred_mts: 
+  four_hundred_mts: 
+  eight_hundred_mts: 
+  thousand_mts: 
+  thousand_five_hundred_mts: 
+  cooper_test: 
+  squat_rm: 
+
+two:
+  user: two
+  date: 2019-10-28
+  hundred_mts: 
+  two_hundred_mts: 
+  three_hundred_mts: 
+  four_hundred_mts: 
+  eight_hundred_mts: 
+  thousand_mts: 
+  thousand_five_hundred_mts: 
+  cooper_test: 
+  squat_rm: 

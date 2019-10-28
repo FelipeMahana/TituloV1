@@ -1,0 +1,41 @@
+<h1>Listing results</h1>
+
+<table>
+  <tr>
+    <th>Date</th>
+    <th>Hundred mts</th>
+    <th>Two hundred mts</th>
+    <th>Three hundred mts</th>
+    <th>Four hundred mts</th>
+    <th>Eight hundred mts</th>
+    <th>Thousand mts</th>
+    <th>Thousand five hundred mts</th>
+    <th>Cooper test</th>
+    <th>Squat rm</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @results.each do |result| %>
+  <tr>
+    <td><%= result.date %></td>
+    <td><%= result.hundred_mts %></td>
+    <td><%= result.two_hundred_mts %></td>
+    <td><%= result.three_hundred_mts %></td>
+    <td><%= result.four_hundred_mts %></td>
+    <td><%= result.eight_hundred_mts %></td>
+    <td><%= result.thousand_mts %></td>
+    <td><%= result.thousand_five_hundred_mts %></td>
+    <td><%= result.cooper_test %></td>
+    <td><%= result.squat_rm %></td>
+    <td><%= link_to 'Show', [result.user, result] %></td>
+    <td><%= link_to 'Edit', edit_user_result_path(result.user, result) %></td>
+    <td><%= link_to 'Destroy', [result.user, result], method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Result', new_user_result_path(params[:user_id]) %>
