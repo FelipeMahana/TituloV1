@@ -48,6 +48,17 @@
 	</div>
 </div>
 
+<!--agregar rutas-->
+<div class="row">
+	<div class="col-md-6">
+		<%= link_to "Agregar Resultados", new_user_result_path(current_user.id), :class=>"btn btn-success"%>
+		<%= link_to "Visualizar Estadisticas", user_results_path(current_user.id), :class=>"btn btn-success"%>
+		<% if current_user.results.present? %>
+			<%= link_to "Visualizar Resultado", user_result_path(current_user.id,current_user.results.last.id), :class=>"btn btn-success"%>
+		<% end %>
+	</div>
+</div>
+
 <div class="row">
 	<div class="col-md-12">
 		<h4>Entrenamiento</h4>
