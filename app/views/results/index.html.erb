@@ -1,9 +1,50 @@
-<p>prueba</p>
-<%= line_chart Result.group_by_day(:created_at).count %>
+<h3>Resultados</h3>
+
+<div class="row">
+  <div class="col-md-6">
+    <h4>100 mts</h4>
+    <%= area_chart Result.group_by_month(:date).sum(:hundred_mts) , xtitle: "Fecha", ytitle: "Tiempo", suffix: " seg", thousands: ".",decimal: ","%>
+  </div>
+  <div class="col-md-6">
+    <h4>200 mts</h4>
+    <%= area_chart Result.group_by_month(:date).sum(:two_hundred_mts), xtitle: "Fecha", ytitle: "Tiempo", suffix: " seg", thousands: ".",decimal: ","%>
+  </div>
+  <div class="col-md-6">
+    <h4>300 mts</h4>
+    <%= area_chart Result.group_by_month(:date).sum(:three_hundred_mts), xtitle: "Fecha", ytitle: "Tiempo", suffix: " seg", thousands: ".",decimal: "," %>
+  </div>
+  <div class="col-md-6">
+    <h4>400 mts</h4>
+    <%= area_chart Result.group_by_month(:date).sum(:four_hundred_mts), xtitle: "Fecha", ytitle: "Tiempo", suffix: " seg", thousands: ".",decimal: "," %>
+  </div>
+  <div class="col-md-6">
+    <h4>800 mts</h4>
+    <%= area_chart Result.group_by_month(:date).sum(:eight_hundred_mts), xtitle: "Fecha", ytitle: "Tiempo", suffix: " seg", thousands: ".",decimal: "," %>
+  </div>
+  <div class="col-md-6">
+    <h4>1000 mts</h4>
+    <%= area_chart Result.group_by_month(:date).sum(:thousand_mts), xtitle: "Fecha", ytitle: "Tiempo", suffix: " seg", thousands: ".",decimal: "," %>
+  </div>
+  <div class="col-md-6">
+    <h4>1500 mts</h4>
+    <%= area_chart Result.group_by_month(:date).sum(:thousand_five_hundred_mts), xtitle: "Fecha", ytitle: "Tiempo", suffix: " seg", thousands: ".",decimal: "," %>
+  </div>
+  <div class="col-md-6">
+    <h4>Test de Copper</h4>
+    <%= area_chart Result.group_by_month(:date).sum(:cooper_test), xtitle: "Fecha", ytitle: "Distancia", suffix: " mts", thousands: ".",decimal: "," %>
+  </div>
+  <div class="col-md-6">
+    <h4>Sentadilla Máximo</h4>
+    <%= area_chart Result.group_by_month(:date).sum(:squat_rm), xtitle: "Fecha", ytitle: "Peso", suffix: " Kg", thousands: ".",decimal: "," %>
+  </div>
+</div>
+
+<!--Final-->
+<%# <%= area_chart Result.group_by_month(:date).valor(:variable), min: 0, max: x, xtitle: "X", ytitle: "Y", suffix: " seg", thousands: ".",decimal: ",", xmin: "1 año atras", xmax: "Hoy" %>
 
 <h1>Listing results</h1>
 
-<table>
+<table >
   <tr>
     <th>Date</th>
     <th>Hundred mts</th>
