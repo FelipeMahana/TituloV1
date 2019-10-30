@@ -3,7 +3,7 @@
 <div class="row">
   <div class="col-md-6">
     <h4>100 mts</h4>
-    <%= area_chart Result.group_by_month(:date).sum(:hundred_mts) , xtitle: "Fecha", ytitle: "Tiempo", suffix: " seg", thousands: ".",decimal: ","%>
+    <%= area_chart @results.group_by_month(:date).sum(:hundred_mts) , xtitle: "Fecha", ytitle: "Tiempo", suffix: " seg", thousands: ".",decimal: ","%>
   </div>
   <div class="col-md-6">
     <h4>200 mts</h4>
@@ -40,7 +40,7 @@
 </div>
 
 <!--Final-->
-<%# <%= area_chart Result.group_by_month(:date).valor(:variable), min: 0, max: x, xtitle: "X", ytitle: "Y", suffix: " seg", thousands: ".",decimal: ",", xmin: "1 año atras", xmax: "Hoy" %>
+<%# <%= area_chart Result.group_by_month(:date).average(:variable), min: 0, max: x, xtitle: "X", ytitle: "Y", suffix: " seg", thousands: ".",decimal: ",", xmin: "1 año atras", xmax: "Hoy" %>
 
 <h1>Listing results</h1>
 
@@ -83,3 +83,9 @@
 <br />
 
 <%= link_to 'New Result', new_user_result_path(params[:user_id]) %>
+|
+<% if can?(:create, :program)%>
+  <%= link_to 'Volver', user_contracts_path %>
+<% else %>
+  <%= link_to 'Volver', profile_path %>
+<% end %>
