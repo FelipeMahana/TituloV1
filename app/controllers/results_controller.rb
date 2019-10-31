@@ -5,6 +5,16 @@ class ResultsController < ApplicationController
   # GET users/1/results
   def index
     @results = @user.results
+    @promedio = @user.results
+    @promedio_100 = (@promedio.average(:hundred_mts))
+    @promedio_200 = (@promedio.average(:two_hundred_mts))
+    @promedio_300 = (@promedio.average(:three_hundred_mts))
+    @promedio_400 = (@promedio.average(:four_hundred_mts))
+    @promedio_800 = (@promedio.average(:eight_hundred_mts))
+    @promedio_1000 = (@promedio.average(:thousand_mts))
+    @promedio_1500 = (@promedio.average(:thousand_five_hundred_mts))
+    @promedio_CT = (@promedio.average(:cooper_test))
+    @promedio_Squat = (@promedio.average(:squat_rm))
   end
 
   # GET users/1/results/1

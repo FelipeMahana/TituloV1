@@ -1,41 +1,51 @@
 <h3>Resultados</h3>
 
+<!--Version individual-->
+<%#= area_chart @results.group_by_month(:date).sum(:hundred_mts), max: (@promedio_100*2) , xtitle: "Fecha", ytitle: "Tiempo", suffix: " seg", thousands: ".",decimal: ","%>
+<!--Version grupal-->
+<%#= area_chart Result.group_by_month(:date).sum(:two_hundred_mts), xtitle: "Fecha", ytitle: "Tiempo", suffix: " seg", thousands: ".",decimal: ","%>
+
 <div class="row">
   <div class="col-md-6">
     <h4>100 mts</h4>
     <%= area_chart @results.group_by_month(:date).sum(:hundred_mts) , xtitle: "Fecha", ytitle: "Tiempo", suffix: " seg", thousands: ".",decimal: ","%>
+    <%= area_chart [
+      {name: "Resultados", data: (@results.group_by_month(:date).sum(:hundred_mts)) },
+      {name: "Promedio", data: (Result.group_by_month(:date).maximum(:hundred_mts))}
+    ]%>
+    <p> El promedio es <%= @promedio_100.to_i %></p>
   </div>
   <div class="col-md-6">
     <h4>200 mts</h4>
-    <%= area_chart Result.group_by_month(:date).sum(:two_hundred_mts), xtitle: "Fecha", ytitle: "Tiempo", suffix: " seg", thousands: ".",decimal: ","%>
+    <%= area_chart Result.group_by_month(:date).maximum(:two_hundred_mts), xtitle: "Fecha", ytitle: "Tiempo", suffix: " seg", thousands: ".",decimal: ","%>
   </div>
   <div class="col-md-6">
     <h4>300 mts</h4>
-    <%= area_chart Result.group_by_month(:date).sum(:three_hundred_mts), xtitle: "Fecha", ytitle: "Tiempo", suffix: " seg", thousands: ".",decimal: "," %>
+    <%= area_chart Result.group_by_month(:date).maximum(:three_hundred_mts), xtitle: "Fecha", ytitle: "Tiempo", suffix: " seg", thousands: ".",decimal: "," %>
   </div>
   <div class="col-md-6">
     <h4>400 mts</h4>
-    <%= area_chart Result.group_by_month(:date).sum(:four_hundred_mts), xtitle: "Fecha", ytitle: "Tiempo", suffix: " seg", thousands: ".",decimal: "," %>
+    <%= area_chart Result.group_by_month(:date).maximum(:four_hundred_mts), xtitle: "Fecha", ytitle: "Tiempo", suffix: " seg", thousands: ".",decimal: "," %>
   </div>
   <div class="col-md-6">
     <h4>800 mts</h4>
-    <%= area_chart Result.group_by_month(:date).sum(:eight_hundred_mts), xtitle: "Fecha", ytitle: "Tiempo", suffix: " seg", thousands: ".",decimal: "," %>
+    <%= area_chart Result.group_by_month(:date).maximum(:eight_hundred_mts), xtitle: "Fecha", ytitle: "Tiempo", suffix: " seg", thousands: ".",decimal: "," %>
   </div>
   <div class="col-md-6">
     <h4>1000 mts</h4>
-    <%= area_chart Result.group_by_month(:date).sum(:thousand_mts), xtitle: "Fecha", ytitle: "Tiempo", suffix: " seg", thousands: ".",decimal: "," %>
+    <%= area_chart Result.group_by_month(:date).maximum(:thousand_mts), xtitle: "Fecha", ytitle: "Tiempo", suffix: " seg", thousands: ".",decimal: "," %>
   </div>
   <div class="col-md-6">
     <h4>1500 mts</h4>
-    <%= area_chart Result.group_by_month(:date).sum(:thousand_five_hundred_mts), xtitle: "Fecha", ytitle: "Tiempo", suffix: " seg", thousands: ".",decimal: "," %>
+    <%= area_chart Result.group_by_month(:date).maximum(:thousand_five_hundred_mts), xtitle: "Fecha", ytitle: "Tiempo", suffix: " seg", thousands: ".",decimal: "," %>
   </div>
   <div class="col-md-6">
     <h4>Test de Copper</h4>
-    <%= area_chart Result.group_by_month(:date).sum(:cooper_test), xtitle: "Fecha", ytitle: "Distancia", suffix: " mts", thousands: ".",decimal: "," %>
+    <%= area_chart Result.group_by_month(:date).maximum(:cooper_test), xtitle: "Fecha", ytitle: "Distancia", suffix: " mts", thousands: ".",decimal: "," %>
   </div>
   <div class="col-md-6">
     <h4>Sentadilla Máximo</h4>
-    <%= area_chart Result.group_by_month(:date).sum(:squat_rm), xtitle: "Fecha", ytitle: "Peso", suffix: " Kg", thousands: ".",decimal: "," %>
+    <%= area_chart Result.group_by_month(:date).maximum(:squat_rm), xtitle: "Fecha", ytitle: "Peso", suffix: " Kg", thousands: ".",decimal: "," %>
   </div>
 </div>
 
