@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20191028194003) do
+ActiveRecord::Schema.define(version: 20191031042303) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -78,13 +78,13 @@ ActiveRecord::Schema.define(version: 20191028194003) do
   create_table "results", force: :cascade do |t|
     t.bigint "user_id"
     t.date "date"
-    t.integer "hundred_mts"
-    t.integer "two_hundred_mts"
-    t.integer "three_hundred_mts"
-    t.integer "four_hundred_mts"
-    t.integer "eight_hundred_mts"
-    t.integer "thousand_mts"
-    t.integer "thousand_five_hundred_mts"
+    t.float "hundred_mts"
+    t.float "two_hundred_mts"
+    t.float "three_hundred_mts"
+    t.float "four_hundred_mts"
+    t.float "eight_hundred_mts"
+    t.float "thousand_mts"
+    t.float "thousand_five_hundred_mts"
     t.integer "cooper_test"
     t.integer "squat_rm"
     t.datetime "created_at", null: false

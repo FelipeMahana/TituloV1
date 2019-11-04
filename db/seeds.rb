@@ -5,6 +5,7 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+require 'date'
 
 Plan.destroy_all
 Contract.destroy_all
@@ -37,14 +38,17 @@ plan5 = Plan.create(price: 160, duration: 3, contract_type: 2, description: Fake
 plan6 = Plan.create(price: 300, duration: 3, contract_type: 3, description: Faker::Lorem.paragraph)
 
 ###Creacion de usuario admin/profesor###
-User.create(name: "entrenador", email: "entrenador@gmail.com", password: "123123", role: 'admin')
+User.create(name: "entrenador1", email: "entrenador1@gmail.com", password: "123123", role: 'admin')
+User.create(name: "entrenador2", email: "entrenador2@gmail.com", password: "123123", role: 'admin')
 
 ### ~~~~Creacion contenido generico contrato~~~~ ###
 #Contract.create(weight: (peso en kg), height: (altura en cms), activity_level: (nivel de actividad fisica, valor entre 1 a 5),goal: (texto cualquiera, soporta text), disease: (texto cualquiera, largo string), allergies: (texto cualquiera, largo string), bmr(este es para randomizar el valor calorico diario, en teoria se calcula con los datos que entrega el cliente, pero un rango entre 2000 y 3000 es resultado esperable),age: (edad, valores positivos),sex: (valor entre 1 y 2, donde 1 es hombre y 2 es mujer),pending: true(true significa que se a generado el contrato, necesario para poder hacer un programa))
+fecha = DateTime.now
+
 15.times do |i|
 	usuario = User.create(name: "usuario#{i}", email: "usuario#{i}@gmail.com", password: "123123")
 	12.times do |j|
-		result = Result.create(date: (Date.today-rand(500)), hundred_mts: rand(10..20), two_hundred_mts: rand(19..40), three_hundred_mts: rand(37..55), four_hundred_mts: rand(46..60), eight_hundred_mts: rand(100..120),thousand_mts: rand(120..150), thousand_five_hundred_mts: rand(260..300), cooper_test: rand(1000..3000), squat_rm: rand(20..200), user: usuario)
+		result = Result.create(date: (fecha << j), hundred_mts: rand(10..20), two_hundred_mts: rand(19..40), three_hundred_mts: rand(37..55), four_hundred_mts: rand(46..60), eight_hundred_mts: rand(100..120),thousand_mts: rand(120..150), thousand_five_hundred_mts: rand(260..300), cooper_test: rand(1000..3000), squat_rm: rand(20..200), user: usuario)
 	end
 	contrato = Contract.create(weight: rand(30..150), height: rand(60..230), activity_level: rand(1..5),goal: Faker::Lorem.paragraph, disease: Faker::Lorem.word, allergies: Faker::Lorem.word, bmr: rand(2000..3000), age: rand(10..100), sex:rand(1..2), pending: true, user: usuario, plan: plan3)
 
