@@ -15,110 +15,79 @@
 <div class="row">
   <div class="col-md-6">
     <h4>100 mts</h4>
-    <%= area_chart [
-      {name: "Resultado Personal", data: (@results.group_by_month(:date).sum(:hundred_mts)) },
-      {name: "Promedio", data: (Result.group_by_month(:date).maximum(:hundred_mts))},
-    ], xtitle: "Fecha", ytitle: "Tiempo", suffix: " seg", thousands: ".",decimal: ","%>
-    <p> El promedio es <%= @promedio_100 %></p>
+    <%= line_chart [
+      {name: "Peor Marca", data: (@results.group_by_month(:date).maximum(:hundred_mts)) },
+      {name: "Mejor Marca", data: (@results.group_by_month(:date).minimum(:hundred_mts)) },
+      {name: "Mejor Marca General", data: (Result.group_by_month(:date).minimum(:hundred_mts))},
+    ], xtitle: "Fecha", ytitle: "Tiempo", suffix: " seg", thousands: ".",decimal: ",", messages: {empty: "No hay Información"} %>
   </div>
   <div class="col-md-6">
     <h4>200 mts</h4>
-    <%= area_chart [
-      {name: "Resultado Personal", data: (@results.group_by_month(:date).sum(:two_hundred_mts)) },
-      {name: "Promedio", data: (Result.group_by_month(:date).maximum(:two_hundred_mts))},
-    ], xtitle: "Fecha", ytitle: "Tiempo", suffix: " seg", thousands: ".",decimal: ","%>
+    <%= line_chart [
+      {name: "Peor Marca", data: (@results.group_by_month(:date).maximum(:two_hundred_mts)) },
+      {name: "Mejor Marca", data: (@results.group_by_month(:date).minimum(:two_hundred_mts)) },
+      {name: "Mejor Marca General", data: (Result.group_by_month(:date).minimum(:two_hundred_mts))},
+    ], xtitle: "Fecha", ytitle: "Tiempo", suffix: " seg", thousands: ".",decimal: ",", messages: {empty: "No hay Información"} %>
   </div>
   <div class="col-md-6">
     <h4>300 mts</h4>
-    <%= area_chart [
-      {name: "Resultado Personal", data: (@results.group_by_month(:date).sum(:three_hundred_mts)) },
-      {name: "Promedio", data: (Result.group_by_month(:date).maximum(:three_hundred_mts))},
-    ], xtitle: "Fecha", ytitle: "Tiempo", suffix: " seg", thousands: ".",decimal: ","%>
+    <%= line_chart [
+      {name: "Peor Marca", data: (@results.group_by_month(:date).maximum(:three_hundred_mts)) },
+      {name: "Mejor Marca", data: (@results.group_by_month(:date).minimum(:three_hundred_mts)) },
+      {name: "Mejor Marca General", data: (Result.group_by_month(:date).minimum(:three_hundred_mts))},
+    ], xtitle: "Fecha", ytitle: "Tiempo", suffix: " seg", thousands: ".",decimal: ",", messages: {empty: "No hay Información"} %>
   </div>
   <div class="col-md-6">
     <h4>400 mts</h4>
-    <%= area_chart [
-      {name: "Resultado Personal", data: (@results.group_by_month(:date).sum(:four_hundred_mts)) },
-      {name: "Promedio", data: (Result.group_by_month(:date).maximum(:four_hundred_mts))},
-    ], xtitle: "Fecha", ytitle: "Tiempo", suffix: " seg", thousands: ".",decimal: ","%>
+    <%= line_chart [
+      {name: "Peor Marca", data: (@results.group_by_month(:date).maximum(:four_hundred_mts)) },
+      {name: "Mejor Marca", data: (@results.group_by_month(:date).minimum(:four_hundred_mts)) },
+      {name: "Mejor Marca General", data: (Result.group_by_month(:date).minimum(:four_hundred_mts))},
+    ], xtitle: "Fecha", ytitle: "Tiempo", suffix: " seg", thousands: ".",decimal: ",", messages: {empty: "No hay Información"} %>
   </div>
   <div class="col-md-6">
     <h4>800 mts</h4>
-    <%= area_chart [
-      {name: "Resultado Personal", data: (@results.group_by_month(:date).sum(:eight_hundred_mts)) },
-      {name: "Promedio", data: (Result.group_by_month(:date).maximum(:eight_hundred_mts))},
-    ], xtitle: "Fecha", ytitle: "Tiempo", suffix: " seg", thousands: ".",decimal: ","%>
+    <%= line_chart [
+      {name: "Peor Marca", data: (@results.group_by_month(:date).maximum(:eight_hundred_mts)) },
+      {name: "Mejor Marca", data: (@results.group_by_month(:date).minimum(:eight_hundred_mts)) },
+      {name: "Mejor Marca General", data: (Result.group_by_month(:date).minimum(:eight_hundred_mts))},
+    ], xtitle: "Fecha", ytitle: "Tiempo", suffix: " seg", thousands: ".",decimal: ",", messages: {empty: "No hay Información"} %>
   </div>
   <div class="col-md-6">
     <h4>1000 mts</h4>
-    <%= area_chart [
-      {name: "Resultado Personal", data: (@results.group_by_month(:date).sum(:thousand_mts)) },
-      {name: "Promedio", data: (Result.group_by_month(:date).maximum(:thousand_mts))},
-    ], xtitle: "Fecha", ytitle: "Tiempo", suffix: " seg", thousands: ".",decimal: ","%>
+    <%= line_chart [
+      {name: "Peor Marca", data: (@results.group_by_month(:date).maximum(:thousand_mts)) },
+      {name: "Mejor Marca", data: (@results.group_by_month(:date).minimum(:thousand_mts)) },
+      {name: "Mejor Marca General", data: (Result.group_by_month(:date).minimum(:thousand_mts))},
+    ], xtitle: "Fecha", ytitle: "Tiempo", suffix: " seg", thousands: ".",decimal: ",", messages: {empty: "No hay Información"} %>
   </div>
   <div class="col-md-6">
     <h4>1500 mts</h4>
-    <%= area_chart [
-      {name: "Resultado Personal", data: (@results.group_by_month(:date).sum(:thousand_five_hundred_mts)) },
-      {name: "Promedio", data: (Result.group_by_month(:date).maximum(:thousand_five_hundred_mts))},
-    ], xtitle: "Fecha", ytitle: "Tiempo", suffix: " seg", thousands: ".",decimal: ","%>
+    <%= line_chart [
+      {name: "Peor Marca", data: (@results.group_by_month(:date).maximum(:thousand_five_hundred_mts)) },
+      {name: "Mejor Marca", data: (@results.group_by_month(:date).minimum(:thousand_five_hundred_mts)) },
+      {name: "Mejor Marca General", data: (Result.group_by_month(:date).minimum(:thousand_five_hundred_mts))},
+    ], xtitle: "Fecha", ytitle: "Tiempo", suffix: " seg", thousands: ".",decimal: ",", messages: {empty: "No hay Información"} %>
   </div>
   <div class="col-md-6">
     <h4>Test de Copper</h4>
-    <%= area_chart [
-      {name: "Resultado Personal", data: (@results.group_by_month(:date).sum(:cooper_test)) },
-      {name: "Promedio", data: (Result.group_by_month(:date).maximum(:cooper_test))},
-    ], xtitle: "Fecha", ytitle: "Distancia", suffix: "mts", thousands: ".",decimal: ","%>
+    <%= line_chart [
+      {name: "Peor Marca", data: (@results.group_by_month(:date).minimum(:cooper_test)) },
+      {name: "Mejor Marca", data: (@results.group_by_month(:date).maximum(:cooper_test)) },
+      {name: "Mejor Marca General", data: (Result.group_by_month(:date).maximum(:cooper_test))},
+    ], xtitle: "Fecha", ytitle: "Distancia", suffix: "mts", thousands: ".",decimal: ",", messages: {empty: "No hay Información"} %>
   </div>
   <div class="col-md-6">
     <h4>Sentadilla Máximo</h4>
-    <%= area_chart [
-      {name: "Resultado Personal", data: (@results.group_by_month(:date).sum(:squat_rm)) },
-      {name: "Promedio", data: (Result.group_by_month(:date).maximum(:squat_rm))},
-    ], xtitle: "Fecha", ytitle: "Peso", suffix: " Kg", thousands: ".",decimal: ","%>
+    <%= line_chart [
+      {name: "Peor Marca", data: (@results.group_by_month(:date).minimum(:squat_rm)) },
+      {name: "Mejor Marca", data: (@results.group_by_month(:date).maximum(:squat_rm)) },
+      {name: "Mejor Marca General", data: (Result.group_by_month(:date).maximum(:squat_rm))},
+    ], xtitle: "Fecha", ytitle: "Peso", suffix: " Kg", thousands: ".",decimal: ",", messages: {empty: "No hay Información"} %>
   </div>
 </div>
 
-<!--
-<div class="col-md-6">
-  <h4>200 mts</h4>
-  <%#= area_chart Result.group_by_month(:date).maximum(:two_hundred_mts), xtitle: "Fecha", ytitle: "Tiempo", suffix: " seg", thousands: ".",decimal: ","%>
-</div>
-<div class="col-md-6">
-  <h4>300 mts</h4>
-  <%#= area_chart Result.group_by_month(:date).maximum(:three_hundred_mts), xtitle: "Fecha", ytitle: "Tiempo", suffix: " seg", thousands: ".",decimal: "," %>
-</div>
-<div class="col-md-6">
-  <h4>400 mts</h4>
-  <%#= area_chart Result.group_by_month(:date).maximum(:four_hundred_mts), xtitle: "Fecha", ytitle: "Tiempo", suffix: " seg", thousands: ".",decimal: "," %>
-</div>
-<div class="col-md-6">
-  <h4>800 mts</h4>
-  <%#= area_chart Result.group_by_month(:date).maximum(:eight_hundred_mts), xtitle: "Fecha", ytitle: "Tiempo", suffix: " seg", thousands: ".",decimal: "," %>
-</div>
-<div class="col-md-6">
-  <h4>1000 mts</h4>
-  <%#= area_chart Result.group_by_month(:date).maximum(:thousand_mts), xtitle: "Fecha", ytitle: "Tiempo", suffix: " seg", thousands: ".",decimal: "," %>
-</div>
-<div class="col-md-6">
-  <h4>1500 mts</h4>
-  <%#= area_chart Result.group_by_month(:date).maximum(:thousand_five_hundred_mts), xtitle: "Fecha", ytitle: "Tiempo", suffix: " seg", thousands: ".",decimal: "," %>
-</div>
-<div class="col-md-6">
-  <h4>Test de Copper</h4>
-  <%#= area_chart Result.group_by_month(:date).maximum(:cooper_test), xtitle: "Fecha", ytitle: "Distancia", suffix: " mts", thousands: ".",decimal: "," %>
-</div>
-<div class="col-md-6">
-  <h4>Sentadilla Máximo</h4>
-  <%#= area_chart Result.group_by_month(:date).maximum(:squat_rm), xtitle: "Fecha", ytitle: "Peso", suffix: " Kg", thousands: ".",decimal: "," %>
-</div>
-</div>
-
--->
-
-<!--Final-->
-<%# <%= area_chart Result.group_by_month(:date).average(:variable), min: 0, max: x, xtitle: "X", ytitle: "Y", suffix: " seg", thousands: ".",decimal: ",", xmin: "1 año atras", xmax: "Hoy" %>
-
+<!--scaffold
 <h1>Listing results</h1>
 
 <table >
@@ -138,26 +107,27 @@
     <th></th>
   </tr>
 
-<% @results.each do |result| %>
+<%# @results.each do |result| %>
   <tr>
-    <td><%= result.date %></td>
-    <td><%= result.hundred_mts %></td>
-    <td><%= result.two_hundred_mts %></td>
-    <td><%= result.three_hundred_mts %></td>
-    <td><%= result.four_hundred_mts %></td>
-    <td><%= result.eight_hundred_mts %></td>
-    <td><%= result.thousand_mts %></td>
-    <td><%= result.thousand_five_hundred_mts %></td>
-    <td><%= result.cooper_test %></td>
-    <td><%= result.squat_rm %></td>
-    <td><%= link_to 'Show', [result.user, result] %></td>
-    <td><%= link_to 'Edit', edit_user_result_path(result.user, result) %></td>
-    <td><%= link_to 'Destroy', [result.user, result], method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <td><%#= result.date %></td>
+    <td><%#= result.hundred_mts %></td>
+    <td><%#= result.two_hundred_mts %></td>
+    <td><%#= result.three_hundred_mts %></td>
+    <td><%#= result.four_hundred_mts %></td>
+    <td><%#= result.eight_hundred_mts %></td>
+    <td><%#= result.thousand_mts %></td>
+    <td><%#= result.thousand_five_hundred_mts %></td>
+    <td><%#= result.cooper_test %></td>
+    <td><%#= result.squat_rm %></td>
+    <td><%#= link_to 'Show', [result.user, result] %></td>
+    <td><%#= link_to 'Edit', edit_user_result_path(result.user, result) %></td>
+    <td><%#= link_to 'Destroy', [result.user, result], method: :delete, data: { confirm: 'Are you sure?' } %></td>
   </tr>
-<% end %>
+<%# end %>
 </table>
 
 <br />
+-->
 
 <%= link_to 'New Result', new_user_result_path(params[:user_id]) %>
 |
