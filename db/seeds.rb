@@ -10,7 +10,6 @@ require 'date'
 Plan.destroy_all
 Contract.destroy_all
 User.destroy_all
-Billing.destroy_all
 Program.destroy_all
 Result.destroy_all
 
@@ -47,7 +46,10 @@ fecha = DateTime.now
 15.times do |i|
 	usuario = User.create(name: "usuario#{i}", email: "usuario#{i}@gmail.com", password: "123123")
 	12.times do |j|
-		result = Result.create(date: (fecha << j), hundred_mts: rand(10..20), two_hundred_mts: rand(19..40), three_hundred_mts: rand(37..55), four_hundred_mts: rand(46..60), eight_hundred_mts: rand(100..120),thousand_mts: rand(120..150), thousand_five_hundred_mts: rand(260..300), cooper_test: rand(1000..3000), squat_rm: rand(100..200), user: usuario)
+		#Bueno
+		result = Result.create(date: (fecha << j), hundred_mts: rand(10..16), two_hundred_mts: rand(19..35), three_hundred_mts: rand(37..50), four_hundred_mts: rand(46..55), eight_hundred_mts: rand(100..115),thousand_mts: rand(120..140), thousand_five_hundred_mts: rand(260..285), cooper_test: rand(1000..2500), squat_rm: rand(150..250), user: usuario)
+		#Malo
+		result = Result.create(date: (fecha << j), hundred_mts: rand(13..20), two_hundred_mts: rand(25..40), three_hundred_mts: rand(42..55), four_hundred_mts: rand(51..60), eight_hundred_mts: rand(110..120),thousand_mts: rand(131..150), thousand_five_hundred_mts: rand(273..300), cooper_test: rand(2000..3000), squat_rm: rand(100..160), user: usuario)
 	end
 	contrato = Contract.create(weight: rand(30..150), height: rand(60..230), activity_level: rand(1..5),goal: Faker::Lorem.paragraph, disease: Faker::Lorem.word, allergies: Faker::Lorem.word, bmr: rand(2000..3000), age: rand(10..100), sex:rand(1..2), pending: true, user: usuario, plan: plan3)
 
