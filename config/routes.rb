@@ -21,12 +21,6 @@ Rails.application.routes.draw do
       end
     end
 
-    resources :billings, only: [] do
-      collection do
-        get 'pre_pay'
-        get 'execute'
-      end
-    end
 
     get 'contact', to: 'plans#contact'
     get 'terms_and_conditions', to: 'plans#terms_and_conditions'
