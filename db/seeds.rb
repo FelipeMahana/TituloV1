@@ -51,6 +51,6 @@ fecha = DateTime.now
 		#Malo
 		result = Result.create(date: (fecha << j), hundred_mts: rand(13..20), two_hundred_mts: rand(25..40), three_hundred_mts: rand(42..55), four_hundred_mts: rand(51..60), eight_hundred_mts: rand(110..120),thousand_mts: rand(131..150), thousand_five_hundred_mts: rand(273..300), cooper_test: rand(2000..3000), squat_rm: rand(100..160), user: usuario)
 	end
-	contrato = Contract.create(weight: rand(30..150), height: rand(60..230), activity_level: rand(1..5),goal: Faker::Lorem.paragraph, disease: Faker::Lorem.word, allergies: Faker::Lorem.word, bmr: rand(2000..3000), age: rand(10..100), sex:rand(1..2), pending: true, user: usuario, plan: plan3)
+	contrato = Contract.create(weight: rand(30..150), height: rand(60..230),goal: Faker::Lorem.paragraph, age: rand(10..100), sex:rand(1..2), pending: true, user: usuario, plan: plan3)
 
 end
