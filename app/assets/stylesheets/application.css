@@ -13,3 +13,27 @@
  *= require_tree .
  *= require_self
  */
+
+ .vertical-center{
+  height: 90vh;
+  -webkit-flex-flow: column wrap;
+  -ms-flex-flow: column wrap;
+  flex-flow: column wrap;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack:center;
+  -webkit-justify-content:center;
+  -ms-flex-pack:center;
+  justify-content:center;
+  text-align: center;
+}
+
+.hola{
+ height: 80vh;
+ flex-flow: column wrap;
+ display: flex;
+ justify-content:center;
+ text-align: center;
+}

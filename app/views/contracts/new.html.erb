@@ -1,32 +1,39 @@
-<h4>Formualrio Primera parte</h4>
-<h5>Datos basicos</h5>
+<br><br><br>
+<h4>Información Básica</h4>
 
-<div class="row">
-	<div class="col-md-4 mb-4">
+<div class="row contracts-new">
+	<div class="col-md-4 mb-4 form-group">
 		<%=form_with(model: [@plan, @contract], local: true) do |form| %>
-			<%=form.label :peso %>
-			<em>(Kg)</em><br>
-			<%=form.number_field :weight, in: 10...200 %>
-			<br>
-			<%=form.label :estatura %>
-			<em>(Cms)</em> <br>
-			<%=form.number_field :height, in: 55...273 %>
-			<br>
-			<%=form.label :edad %> <br>
-			<%=form.number_field :age, in: 1...131 %>
-			<br>
-			<%=form.label :sexo %> <br>
-			<%=form.select(:sex, options_for_select([['Hombre', 1], ['Mujer', 2]])) %>
-			<br>
-			<%=form.label :objetivo %> <br>
-			<%=form.text_area :goal %>
-			<br>
-			<%=form.label :porcentaje_de_grasa %>
-			<em>(Opcional)</em> <br>
-			<%=form.number_field :fat_percentage, in: 1...101 %>
-			<br>
-			<%= form.submit 'crear' %>
-			<br>
+			<div class="field form-text form-group">
+				<%=form.label :peso %>
+				<em>(Kg)</em>
+				<%=form.number_field :weight, in: 10...200, placeholder: 'Ingrese Peso', class: 'form-control' %>
+			</div>
+			<div class="field form-text form-group">
+					<%=form.label :estatura %>
+					<em>(Cms)</em>
+					<%=form.number_field :height, in: 55...273, placeholder: 'Ingrese Estatura', class: 'form-control' %>
+			</div>
+			<div class="field form-text form-group">
+				<%=form.label :edad %>
+				<%=form.number_field :age, in: 1...131, placeholder: 'Ingrese Edad', class: 'form-control' %>
+			</div>
+			<div class="field form-text form-group ">
+				<%=form.label :sexo %>
+				<%=form.select(:sex, options_for_select([['Hombre', 1], ['Mujer', 2]]),{}, {class: 'form-control'}) %>
+			</div>
+			<div class="field form-text form-group">
+				<%=form.label :objetivo %>
+				<%=form.text_area :goal, placeholder: 'Ingrese Objetivo', class: 'form-control' %>
+			</div>
+			<div class="field form-text text-muted form-group">
+				<%=form.label :porcentaje_de_grasa %>
+				<em>(Opcional)</em>
+				<%=form.number_field :fat_percentage, in: 1...101, placeholder: 'Ingrese % Grasa', class: 'form-control' %>
+			</div>
+			<div class="field form-group">
+				<%= form.submit 'crear' %>
+			</div>
 			<%= link_to 'volver a index', root_path %>
 		<% end %>
 	</div>

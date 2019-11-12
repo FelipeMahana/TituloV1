@@ -1,9 +1,10 @@
+<br><br><br>
 <% if @plan.contract_type == 1%>
-	<h3>Realización de Plan Entrenamiento</h3>
+	<h3>Editar Plan Entrenamiento</h3>
 <% elsif @plan.contract_type == 2 %>
-	<h3>Realización de Plan Nutricional </h3>
+	<h3>Editar de Plan Nutricional </h3>
 <% else %>
-	<h3>Realización de Plan Entrenamiento y nutricion</h3>
+	<h3>Editar Plan Entrenamiento y nutricion</h3>
 <% end %>
 
 
@@ -49,7 +50,7 @@
 		<div class="col-md-4 mb-4">
 			<%=form_with(model: [@plan, @contract, @user ,@program], local: true) do |form| %>
 				<%=form.label :training %> <br>
-				<%=form.text_area(:training, rows: 20, cols: 50) %>
+				<%=form.text_area(:training, rows: 20, cols: 50, placeholder: 'Nueva Rutina Entrenamiento', class: 'form-control') %>
 				<br>
 				<%= form.submit 'editar' %>
 				<br>
@@ -64,7 +65,7 @@
 		<div class="col-md-4 mb-4">
 			<%=form_with(model: [@plan, @contract, @user ,@program], local: true) do |form| %>
 				<%=form.label :nutrition %> <br>
-				<%=form.text_area(:nutrition, rows: 20, cols: 50) %>
+				<%=form.text_area(:nutrition, rows: 20, cols: 50, placeholder: 'Nueva Plan Nutricional', class: 'form-control') %>
 				<br>
 				<%= form.submit 'editar' %>
 				<br>
@@ -79,10 +80,10 @@
 		<div class="col-md-4 mb-4">
 		<%=form_with(model: [@plan, @contract, @user ,@program], local: true) do |form| %>
 			<%=form.label :training %> <br>
-			<%=form.text_area(:training, rows: 20, cols: 50) %>
+			<%=form.text_area(:training, rows: 20, cols: 50, placeholder: 'Nueva Rutina Entrenamiento', class: 'form-control') %>
 			<br>
 			<%=form.label :nutrition %> <br>
-			<%=form.text_area(:nutrition, rows: 20, cols: 50) %>
+			<%=form.text_area(:nutrition, rows: 20, cols: 50, placeholder: 'Nueva Plan Nutricional', class: 'form-control') %>
 			<br>
 			<%= form.submit 'editar' %>
 			<br>

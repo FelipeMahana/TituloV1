@@ -1,3 +1,6 @@
+<br>
+<br>
+<br>
 <h4>Tabla de usuarios con planes pendientes</h4>
 <table class="table table-striped table-hover ">
   <thead>
@@ -8,7 +11,6 @@
       <th>Duracion Plan(mes)</th>
       <th>Fecha Termino Plan</th>
       <th></th>
-      <th>ids(comprobacion)</th>
 
       <th colspan="3"></th>
     </tr>
@@ -66,10 +68,11 @@
             <%= link_to "Visualizar Estadistica", user_results_path(user.id), :class=>"btn btn-success"%>
           </td>
 
+          <!--util de debbug-->
           <td>
-            <%= user.contracts.last.plan.id %>
-            <%= user.contracts.last.id %>
-            <%= user.id %>
+            <%#= user.contracts.last.plan.id %>
+            <%#= user.contracts.last.id %>
+            <%#= user.id %>
           </td>
 
 

@@ -2,18 +2,6 @@
 <div class="container">
 	<div class="row">
 		<div class="offset-md-5 col-md-3">
-			<h5>Quienes somos</h5>
-		</div>
-		<div>
-			<p>Somos un gestor de entrenamientos personalizados, esto con el fin de ser usado para la aprobación de Proyecto de Título.</p>
-		</div>
-	</div>
-</div>
-
-
-<div class="container">
-	<div class="row">
-		<div class="offset-md-5 col-md-3">
 			<h5>Entrenamiento en línea</h5>
 		</div>
 		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
@@ -26,10 +14,18 @@
 	</div>
 </div>
 
+
 <div class="row">
 	<% @plans.order("duration").each do | plans | %>
 		<div class="col-md-4 mb-4">
-			<div class="card">
+			<div class="card card-index h-100">
+				<% if plans.contract_type == 1%>
+					<%= image_tag("cart1.jpg",class: "card-img-top", size: "200x200", alt: "...")%>
+				<% elsif plans.contract_type == 2 %>
+					<%= image_tag("cart2.jpg",class: "card-img-top", size: "200x200", alt: "...")%>
+				<% else %>
+					<%= image_tag("cart3.jpg",class: "card-img-top", size: "200x200", alt: "...")%>
+				<% end %>
 				<div class="card-body text-center">
 					<% if plans.contract_type == 1%>
 						<h5 class="card-title"> Plan Entrenamiento </h5>
@@ -47,6 +43,7 @@
 		</div>
 	<% end %>
 </div>
+
 
 <div class="container">
 	<div class="row">
