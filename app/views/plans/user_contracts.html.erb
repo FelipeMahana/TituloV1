@@ -2,81 +2,83 @@
 <br>
 <br>
 <h4>Usuarios con planes pendientes</h4>
-<table class="table table-striped table-hover table-responsive">
-  <thead class="thead-dark">
-    <tr>
-      <th>Usuario</th>
-      <th>Plan</th>
-      <th>Fecha Contrato</th>
-      <th>Duracion Plan(mes)</th>
-      <th></th>
-    </tr>
-  </thead>
+<div class="user_contract">
+  <table class="table table-striped table-hover table-responsive">
+    <thead class="thead-dark">
+      <tr>
+        <th>Usuario</th>
+        <th>Plan</th>
+        <th>Fecha Contrato</th>
+        <th>Duracion Plan(mes)</th>
+        <th></th>
+      </tr>
+    </thead>
 
-  <tbody>
-    <% @users.order("created_at").each do |user| %>
-      <% if user.contracts.present? and user.contracts.last.pending == true %>
-        <tr>
-          <% if user.name.present? %>
-            <td><%= user.name %></td>
-          <% else %>
-            <td><%= user.email %></td>
-          <% end %>
-          <td>
-            <% unless user.contracts.last.nil? %>
-              <% unless user.contracts.last.plan.nil? %>
-                <% if user.contracts.last.plan.contract_type == 1%>
-                  Plan Entrenamiento
-                <% elsif user.contracts.last.plan.contract_type == 2 %>
-                  Plan Nutricional
-                <% else %>
-                  Plan Entrenamiento y Nutrición
+    <tbody>
+      <% @users.order("created_at").each do |user| %>
+        <% if user.contracts.present? and user.contracts.last.pending == true %>
+          <tr>
+            <% if user.name.present? %>
+              <td><%= user.name %></td>
+            <% else %>
+              <td><%= user.email %></td>
+            <% end %>
+            <td>
+              <% unless user.contracts.last.nil? %>
+                <% unless user.contracts.last.plan.nil? %>
+                  <% if user.contracts.last.plan.contract_type == 1%>
+                    Plan Entrenamiento
+                  <% elsif user.contracts.last.plan.contract_type == 2 %>
+                    Plan Nutricional
+                  <% else %>
+                    Plan Entrenamiento y Nutrición
+                  <% end %>
                 <% end %>
               <% end %>
-            <% end %>
-          </td>
-          <!--start date-->
-          <td>
+            </td>
+            <!--start date-->
+            <td>
+                <% unless user.contracts.last.nil? %>
+                  <% start_date_conract=user.contracts.last.created_at %>
+                  <%#= user.contracts.last.created_at %>
+                  <%= user.contracts.last.created_at.strftime('%d/%m/%Y') %>
+                  <%#= user.contracts.last.start_date%>
+                <% end %>
+            </td>
+            <!--duracion-->
+            <td>
               <% unless user.contracts.last.nil? %>
-                <% start_date_conract=user.contracts.last.created_at %>
-                <%#= user.contracts.last.created_at %>
-                <%= user.contracts.last.created_at.strftime('%d/%m/%Y') %>
-                <%#= user.contracts.last.start_date%>
+                <% unless user.contracts.last.plan.nil? %>
+                  <% duration_plans_mont=user.contracts.last.plan.duration.month %>
+                  <%= user.contracts.last.plan.duration %>
+                <% end %>
               <% end %>
-          </td>
-          <!--duracion-->
-          <td>
-            <% unless user.contracts.last.nil? %>
-              <% unless user.contracts.last.plan.nil? %>
-                <% duration_plans_mont=user.contracts.last.plan.duration.month %>
-                <%= user.contracts.last.plan.duration %>
-              <% end %>
-            <% end %>
-          </td>
-          <!--termino
-          <td>
-            <% end_date_contract=(start_date_conract+duration_plans_mont)%>
-            <%= end_date_contract.strftime('%d/%m/%Y')  %>
-            <%#= user.contracts.last.end_date%>
-          </td>-->
+            </td>
+            <!--termino
+            <td>
+              <% end_date_contract=(start_date_conract+duration_plans_mont)%>
+              <%= end_date_contract.strftime('%d/%m/%Y')  %>
+              <%#= user.contracts.last.end_date%>
+            </td>-->
 
-          <td>
-            <div class="btn-group" role="group">
-              <%= link_to "Realizar Programa", new_plan_contract_user_program_path(user.contracts.last.plan.id,user.contracts.last.id,user.id), :class=>"btn btn-outline-success"%>
-              <%= link_to "Visualizar Estadística", user_results_path(user.id), :class=>"btn btn-outline-success"%>
-            </div>
-          </td>
+            <td>
+              <div class="btn-group" role="group">
+                <%= link_to "Realizar Programa", new_plan_contract_user_program_path(user.contracts.last.plan.id,user.contracts.last.id,user.id), :class=>"btn btn-outline-success"%>
+                <%= link_to "Visualizar Estadística", user_results_path(user.id), :class=>"btn btn-outline-success"%>
+              </div>
+            </td>
 
-          <!--util de debbug
-          <td>
-            <%#= user.contracts.last.plan.id %>
-            <%#= user.contracts.last.id %>
-            <%#= user.id %>
-          </td>-->
+            <!--util de debbug
+            <td>
+              <%#= user.contracts.last.plan.id %>
+              <%#= user.contracts.last.id %>
+              <%#= user.id %>
+            </td>-->
 
 
-        </tr>
+          </tr>
+        <% end %>
       <% end %>
-    <% end %>
-  </tbody>
-</table>
+    </tbody>
+  </table>
+</div>

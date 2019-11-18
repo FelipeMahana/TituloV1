@@ -1,51 +1,55 @@
 <br><br><br>
 <h4>Tabla con usuarios y solicitud de edicion</h4>
 <h5>Aun no terminado(no lista solo el ultimo)</h5>
-<table class="table table-striped table-hover ">
-  <thead>
-    <tr>
-      <th>Usuario</th>
-      <th>Plan</th>
-      <th>Duracion</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
 
-  <tbody>
-    <% @programs.order("created_at").each do |program| %>
-      <% if current_user.email == program.coach_mail %>
+<div class="row user-programs">
+  <div class="col-md-6">
+    <table class="table table-striped table-hover table-responsive table-bordered ">
+      <thead class="thead-dark">
         <tr>
-          <% if program.contract.user.name.present? %>
-            <td><%= program.contract.user.name %></td>
-          <% else %>
-            <td><%= program.contract.user.email %></td>
-          <% end %>
-          <td>
-            <% if program.contract.plan.contract_type == 1 %>
-              Plan Entrenamiento
-            <% elsif program.contract.plan.contract_type == 2 %>
-              Plan Nutricional
-            <% else %>
-              Plan Entrenamiento y Nutricional
-            <% end %>
-          </td>
-
-          <td>
-            <%= program.contract.plan.duration %>
-          </td>
-
-
-          <td>
-             <!-- revisar parametros -->
-            <%#= program.contract.plan.id %>
-            <%#= program.contract.id %>
-            <%#= program.contract.user.id %>
-            <%#= program.id %>
-
-            <%= link_to "Editar", edit_plan_contract_user_program_path(program.contract.plan.id,program.contract.id,program.contract.user.id,program.id) %>
-            </td>
+          <th>Usuario</th>
+          <th>Plan</th>
+          <th>Fecha Termino</th>
+          <th>Duracion</th>
+          <th colspan="3"></th>
         </tr>
-      <% end %>
-    <% end %>
-  </tbody>
-</table>
+      </thead>
+
+      <tbody>
+        <% @programs.order("created_at").each do |program| %>
+          <% if current_user.email == program.coach_mail %>
+            <tr>
+              <% if program.contract.user.name.present? %>
+                <td><%= program.contract.user.name %></td>
+              <% else %>
+                <td><%= program.contract.user.email %></td>
+              <% end %>
+              <td>
+                <% if program.contract.plan.contract_type == 1 %>
+                  Plan Entrenamiento
+                <% elsif program.contract.plan.contract_type == 2 %>
+                  Plan Nutricional
+                <% else %>
+                  Plan Entrenamiento y Nutricional
+                <% end %>
+              </td>
+
+              <td>
+                <% end_date_contract=(program.contract.created_at+program.contract.plan.duration)%>
+                <%= end_date_contract.strftime('%d/%m/%Y')  %>
+              </td>
+
+              <td>
+                <%= program.contract.plan.duration %>
+              </td>
+
+              <td>
+                <%= link_to "Editar", edit_plan_contract_user_program_path(program.contract.plan.id,program.contract.id,program.contract.user.id,program.id), :class=>"btn btn-primary" %>
+                </td>
+            </tr>
+          <% end %>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
