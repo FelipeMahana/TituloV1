@@ -1,18 +1,15 @@
 <br>
 <br>
 <br>
-<h4>Tabla de usuarios con planes pendientes</h4>
-<table class="table table-striped table-hover ">
-  <thead>
+<h4>Usuarios con planes pendientes</h4>
+<table class="table table-striped table-hover table-responsive">
+  <thead class="thead-dark">
     <tr>
       <th>Usuario</th>
       <th>Plan</th>
       <th>Fecha Contrato</th>
       <th>Duracion Plan(mes)</th>
-      <th>Fecha Termino Plan</th>
       <th></th>
-
-      <th colspan="3"></th>
     </tr>
   </thead>
 
@@ -56,24 +53,26 @@
               <% end %>
             <% end %>
           </td>
-          <!--termino-->
+          <!--termino
           <td>
             <% end_date_contract=(start_date_conract+duration_plans_mont)%>
             <%= end_date_contract.strftime('%d/%m/%Y')  %>
             <%#= user.contracts.last.end_date%>
-          </td>
+          </td>-->
 
           <td>
-            <%= link_to "Realizar programa", new_plan_contract_user_program_path(user.contracts.last.plan.id,user.contracts.last.id,user.id), :class=>"btn btn-success"%>
-            <%= link_to "Visualizar Estadistica", user_results_path(user.id), :class=>"btn btn-success"%>
+            <div class="btn-group" role="group">
+              <%= link_to "Realizar programa", new_plan_contract_user_program_path(user.contracts.last.plan.id,user.contracts.last.id,user.id), :class=>"btn btn-outline-success"%>
+              <%= link_to "Visualizar Estadistica", user_results_path(user.id), :class=>"btn btn-outline-success"%>
+            </div>
           </td>
 
-          <!--util de debbug-->
+          <!--util de debbug
           <td>
             <%#= user.contracts.last.plan.id %>
             <%#= user.contracts.last.id %>
             <%#= user.id %>
-          </td>
+          </td>-->
 
 
         </tr>
