@@ -1,110 +1,142 @@
-<div class="row">
-	<div class="col-md-6 mb-4">
-		<h3>Perfil</h3>
-		<% if current_user.name.present? %>
-			<p>  Nombre: <%= current_user.name %> </p>
-			<p>  Correo: <%= current_user.email %> </p>
-		<% else %>
-			<p>  Correo: <%= current_user.email %> </p>
-		<% end %>
+<br><br><br>
+<div class="perfil">
+	<div class="row">
+		<div class="col-md-6 mb-4">
+			<h3>Perfil</h3>
+			<% if current_user.name.present? %>
+				<p>  Nombre: <%= current_user.name %> </p>
+				<p>  Correo: <%= current_user.email %> </p>
+			<% else %>
+				<p>  Correo: <%= current_user.email %> </p>
+			<% end %>
+		</div>
 	</div>
-</div>
 
-
-<div class="row">
-	<div class="col-md-12">
-		<div class="row">
-			<div class="col-md-6 mb-1">
-				<h5>Datos</h5>
-					<div class="card">
-						<div class="card-body">
-							<p>Edad: <%= current_user.contracts.last.age %></p>
-							<% if current_user.contracts.last.sex == 1 %>
-								<p> Sexo: Masculino </p>
-							<% else %>
-								<p>Sexo: Femenino </p>
-							<% end %>
-								<p>Peso: <%= current_user.contracts.last.weight %> kg</p>
-								<p>Estatura: <%= current_user.contracts.last.height %> cms </p>
+	<div class="row">
+		<div class="col-md-12">
+			<div class="row">
+				<div class="col-md-6 mb-1">
+					<h5>Datos</h5>
+						<div class="card">
+							<div class="card-body">
+								<p>Edad: <%= current_user.contracts.last.age %></p>
+								<% if current_user.contracts.last.sex == 1 %>
+									<p> Sexo: Masculino </p>
+								<% else %>
+									<p>Sexo: Femenino </p>
+								<% end %>
+									<p>Peso: <%= current_user.contracts.last.weight %> kg</p>
+									<p>Estatura: <%= current_user.contracts.last.height %> cms </p>
+							</div>
 						</div>
-					</div>
-			</div>
-			<div class="col-md-6 ">
-				<h5>Datos Entrenador</h5>
-					<div class="card">
-						<div class="card-body">
-							<% if current_user.contracts.last.programs.last.try(:coach_name).present? %>
-								<p>Nombre: <%= current_user.contracts.last.programs.last.coach_name %></p>
-								<p>Correo: <%= current_user.contracts.last.programs.last.coach_mail %></p>
-							<% elsif current_user.contracts.last.programs.last.try(:coach_mail).present? %>
-								<p>Correo: <%= current_user.contracts.last.programs.last.try(:coach_mail) %></p>
-							<% else %>
-								<p>No tiene enrenador asociado</p>
-							<% end %>
+				</div>
+				<div class="col-md-6 ">
+					<h5>Datos Entrenador</h5>
+						<div class="card">
+							<div class="card-body">
+								<% if current_user.contracts.last.programs.last.try(:coach_name).present? %>
+									<p>Nombre: <%= current_user.contracts.last.programs.last.coach_name %></p>
+									<p>Correo: <%= current_user.contracts.last.programs.last.coach_mail %></p>
+								<% elsif current_user.contracts.last.programs.last.try(:coach_mail).present? %>
+									<p>Correo: <%= current_user.contracts.last.programs.last.try(:coach_mail) %></p>
+								<% else %>
+									<p>No tiene enrenador asociado</p>
+								<% end %>
+							</div>
 						</div>
-					</div>
+				</div>
 			</div>
 		</div>
 	</div>
-</div>
 
-<!--agregar rutas-->
-<div class="row">
-	<div class="col-md-6">
-		<%= link_to "Agregar Resultados", new_user_result_path(current_user.id), :class=>"btn btn-success"%>
-		<%= link_to "Visualizar Estadisticas", user_results_path(current_user.id), :class=>"btn btn-success"%>
-		<% if current_user.results.present? %>
-			<%= link_to "Visualizar Resultado", user_result_path(current_user.id,current_user.results.last.id), :class=>"btn btn-success"%>
-		<% end %>
-	</div>
-</div>
-
-<div class="row">
-	<div class="col-md-12">
-		<h4>Entrenamiento</h4>
-			<% if current_user.contracts.last.try(:programs).present? %>
-				<% if current_user.contracts.last.plan.contract_type==1 %>
-					<div class="row">
-						<div class="col-md-6 mb-4">
-							<div class="card">
-								<div class="card-body">
-									<h5>Rutina entrenamiento</h5>
-									<p><%= simple_format(current_user.contracts.last.programs.last.training) %></p>
-								</div>
-							</div>
-						</div>
-					</div>
-				<% elsif current_user.contracts.last.plan.contract_type==2 %>
-					<div class="row">
-						<div class="col-md-6 mb-4">
-							<div class="card">
-								<div class="card-body">
-									<h5>Plan Nutricional</h5>
-									<p><%= simple_format(current_user.contracts.last.programs.last.nutrition) %></p>
-								</div>
-							</div>
-						</div>
-					</div>
-				<% else %>
-				<div class="row">
-					<div class="col-md-6 mb-1">
-							<div class="card">
-								<div class="card-body">
-									<h5>Rutina entrenamiento</h5>
-									<p><%= simple_format(current_user.contracts.last.programs.last.training) %></p>
-								</div>
-							</div>
-						</div>
-						<div class="col-md-6 ">
-							<div class="card">
-								<div class="card-body">
-									<h5>Plan Nutricional</h5>
-									<p><%= simple_format(current_user.contracts.last.programs.last.nutrition) %></p>
-								</div>
-							</div>
-						</div>
-					</div>
+	<div class="row">
+		<div class="col-md-6">
+			<div class="btn-group" role="group">
+				<%= link_to "Agregar Resultados", new_user_result_path(current_user.id), :class=>"btn btn-outline-success"%>
+				<%= link_to "Visualizar Estadisticas", user_results_path(current_user.id), :class=>"btn btn-outline-success"%>
+				<% if current_user.results.present? %>
+					<%= link_to "Visualizar Resultado", user_result_path(current_user.id,current_user.results.last.id), :class=>"btn btn-outline-success"%>
 				<% end %>
+			</div>
+		</div>
+	</div>
+
+
+	<div class="row">
+		<div class="col-md-12">
+			<h4>Entrenamiento</h4>
+			<% fecha_actual = Time.now %>
+			<!--if program present-->
+			<% if current_user.contracts.last.programs.last.present? %>
+				<% fecha_inicial = current_user.contracts.last.programs.last.created_at%>
+				<%= fecha_inicial.strftime('%d/%m/%Y') %>
+				<!---->
+				<% unless current_user.contracts.last.plan.nil? %>
+					<% duration_plans_month=current_user.contracts.last.plan.duration.month %>
+				<% end %>
+				<!---->
+				<% fecha_vencimiento = fecha_inicial + duration_plans_month %>
+				<%= fecha_vencimiento.strftime('%d/%m/%Y') %>
+				<!--if FA<FV-->
+				<% if fecha_actual < fecha_vencimiento %>
+					<% if current_user.contracts.last.try(:programs).present? %>
+						<% if current_user.contracts.last.plan.contract_type==1 %>
+							<div class="row">
+								<div class="col-md-6 mb-4">
+									<div class="card">
+										<div class="card-body">
+											<h5>Rutina entrenamiento</h5>
+											<p><%= simple_format(current_user.contracts.last.programs.last.training) %></p>
+										</div>
+									</div>
+								</div>
+							</div>
+						<% elsif current_user.contracts.last.plan.contract_type==2 %>
+							<div class="row">
+								<div class="col-md-6 mb-4">
+									<div class="card">
+										<div class="card-body">
+											<h5>Plan Nutricional</h5>
+											<p><%= simple_format(current_user.contracts.last.programs.last.nutrition) %></p>
+										</div>
+									</div>
+								</div>
+							</div>
+						<% else %>
+							<div class="row">
+								<div class="col-md-6 mb-1">
+									<div class="card">
+										<div class="card-body">
+											<h5>Rutina entrenamiento</h5>
+											<p><%= simple_format(current_user.contracts.last.programs.last.training) %></p>
+										</div>
+									</div>
+								</div>
+								<div class="col-md-6 ">
+									<div class="card">
+										<div class="card-body">
+											<h5>Plan Nutricional</h5>
+											<p><%= simple_format(current_user.contracts.last.programs.last.nutrition) %></p>
+										</div>
+									</div>
+								</div>
+							</div>
+						<% end %>
+					<% end %>
+				<!--else FA<FV(82)-->
+				<% else %>
+					<div class="row">
+						<div class="col-md-6 mb-6">
+							<div class="card">
+								<div class="card-body">
+								<p>Tu plan se encuentra vencido, por favor actualizar</p>
+								</div>
+							</div>
+						</div>
+					</div>
+				<!--end FA<FV(82)-->
+				<% end %>
+			<!--else program present(71)-->
 			<% else %>
 				<div class="row">
 					<div class="col-md-6 mb-6">
@@ -115,7 +147,9 @@
 						</div>
 					</div>
 				</div>
+			<!--end program present(71)-->
 			<% end %>
+		</div>
 	</div>
 </div>
 <br>

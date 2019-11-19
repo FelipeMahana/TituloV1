@@ -49,14 +49,14 @@
             <td>
               <% unless user.contracts.last.nil? %>
                 <% unless user.contracts.last.plan.nil? %>
-                  <% duration_plans_mont=user.contracts.last.plan.duration.month %>
+                  <% duration_plans_month=user.contracts.last.plan.duration.month %>
                   <%= user.contracts.last.plan.duration %>
                 <% end %>
               <% end %>
             </td>
             <!--termino
             <td>
-              <% end_date_contract=(start_date_conract+duration_plans_mont)%>
+              <% end_date_contract=(start_date_conract+duration_plans_month)%>
               <%= end_date_contract.strftime('%d/%m/%Y')  %>
               <%#= user.contracts.last.end_date%>
             </td>-->
