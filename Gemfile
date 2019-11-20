@@ -32,13 +32,22 @@ gem 'jbuilder', '~> 2.5'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
+
+#Control de acceso
 gem 'cancancan'
+#Autentificacion de usuario
 gem 'devise'
+#Data falsa
 gem 'faker'
-gem 'paypal-sdk-rest'
+#Paginacion tablas
+gem 'kaminari'
+#Crear modelo entidad realcion
 gem 'rails-erd', require: false, group: :development
+#NestedScaffold automatico
 gem 'nested_scaffold'
+#Graficos
 gem "chartkick"
+#Consulta
 gem 'groupdate'
 
 group :development, :test do
