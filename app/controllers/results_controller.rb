@@ -33,7 +33,7 @@ class ResultsController < ApplicationController
   # POST users/1/results
   def create
     @result = @user.results.build(result_params)
-
+    @result.date = DateTime.now.strftime "%d/%m/%Y"
     if @result.save
       redirect_to([@result.user, @result], notice: 'Result was successfully created.')
     else

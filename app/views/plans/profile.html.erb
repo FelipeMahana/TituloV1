@@ -49,13 +49,15 @@
 		</div>
 	</div>
 
+<br>
 	<div class="row">
-		<div class="col-md-6">
+		<div class="col-md-10 offset-md-2">
 			<div class="btn-group" role="group">
 				<%= link_to "Agregar Resultados", new_user_result_path(current_user.id), :class=>"btn btn-outline-success"%>
 				<%= link_to "Visualizar Estadisticas", user_results_path(current_user.id), :class=>"btn btn-outline-success"%>
 				<% if current_user.results.present? %>
-					<%= link_to "Visualizar Resultado", user_result_path(current_user.id,current_user.results.last.id), :class=>"btn btn-outline-success"%>
+					<!--En algun lado cambie el orden de last a first -->
+					<%= link_to "Visualizar Resultado", user_result_path(current_user.id,current_user.results.first.id), :class=>"btn btn-outline-success"%>
 				<% end %>
 			</div>
 		</div>
@@ -69,6 +71,7 @@
 			<!--if program present-->
 			<% if current_user.contracts.last.programs.last.present? %>
 				<% fecha_inicial = current_user.contracts.last.programs.last.created_at%>
+				debuggeo penca
 				<%= fecha_inicial.strftime('%d/%m/%Y') %>
 				<!---->
 				<% unless current_user.contracts.last.plan.nil? %>
