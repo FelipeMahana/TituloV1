@@ -37,3 +37,12 @@
  justify-content:center;
  text-align: center;
 }
+
+.container-body{
+  min-height: 83vh;
+}
+
+.footer-body{
+  bottom:0;
+  width:100%;
+}
