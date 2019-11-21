@@ -1,6 +1,5 @@
 <br><br><br>
 <h4>Tabla con usuarios y solicitud de edicion</h4>
-<h5>Aun no terminado(no lista solo el ultimo)</h5>
 
 <div class="user-programs table-responsive">
     <table class="table table-striped table-hover table-bordered">
@@ -16,7 +15,7 @@
 
       <tbody>
         <% @programs.order("created_at").each do |program| %>
-          <% if current_user.email == program.coach_mail %>
+          <% if current_user.email == program.coach_mail and program.edited == false %>
             <tr>
               <% if program.contract.user.name.present? %>
                 <td><%= program.contract.user.name %></td>

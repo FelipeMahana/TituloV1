@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20191107041023) do
+ActiveRecord::Schema.define(version: 20191121204812) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -52,6 +52,7 @@ ActiveRecord::Schema.define(version: 20191107041023) do
     t.text "nutrition"
     t.string "coach_mail"
     t.string "coach_name"
+    t.boolean "edited", default: false
     t.index ["contract_id"], name: "index_programs_on_contract_id"
   end
 

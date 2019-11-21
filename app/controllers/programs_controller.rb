@@ -26,6 +26,7 @@ class ProgramsController < ApplicationController
 
     def update
         @program.contract_id = params[:contract_id]
+        @program.edited = true
         @program.update(program_params)
         if @program.update(program_params)
             redirect_to user_programs_path, notice: 'El programa se a actualizado con exito'
