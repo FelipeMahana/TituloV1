@@ -67,18 +67,11 @@
                 <%= link_to "Visualizar", user_results_path(user.id), :class=>"btn btn-outline-success"%>
               </div>
             </td>
-
-            <!--util de debbug
-            <td>
-              <%#= user.contracts.last.plan.id %>
-              <%#= user.contracts.last.id %>
-              <%#= user.id %>
-            </td>-->
-
-
           </tr>
         <% end %>
       <% end %>
     </tbody>
   </table>
+  <!--Kaminary-->
+  <%#= paginate @users, window:1, left:0, right: 1 %>
 </div>

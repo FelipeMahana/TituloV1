@@ -9,4 +9,5 @@ class User < ApplicationRecord
   has_many :plans, through: :contracts, dependent: :destroy
 
   enum role: [:guest ,:professional, :admin]
+  #paginates_per 8
 end
