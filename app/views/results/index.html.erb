@@ -12,14 +12,18 @@
   {name: "Resultados", data: (@results.group_by_month(:date).sum(:hundred_mts)) },
   {name: "Promedio", data: (Result.group_by_month(:date).maximum(:hundred_mts))},
 ], xtitle: "Fecha", ytitle: "Tiempo", suffix: " seg", thousands: ".",decimal: ","%>
+<div class="input-group date">
+  <input type="text" id="rangepicker" >
+</div>
+
 
 <div class="row">
   <div class="col-md-6">
     <h4>100 mts</h4>
     <%= line_chart [
-      {name: "Peor Marca", data: (@results.group_by_month(:date).maximum(:hundred_mts)) },
-      {name: "Mejor Marca", data: (@results.group_by_month(:date).minimum(:hundred_mts)) },
-      {name: "Mejor Marca General", data: (Result.group_by_month(:date).minimum(:hundred_mts))},
+      {name: "Peor Marca", data: (@results.group_by_month(:date, range: @range).maximum(:hundred_mts)) },
+      {name: "Mejor Marca", data: (@results.group_by_month(:date, range: @range).minimum(:hundred_mts)) },
+      {name: "Mejor Marca General", data: (Result.group_by_month(:date, range: @range).minimum(:hundred_mts))},
     ], xtitle: "Fecha", ytitle: "Tiempo", suffix: " seg", thousands: ".",decimal: ",", messages: {empty: "No hay Información"} %>
   </div>
   <div class="col-md-6">
@@ -88,48 +92,6 @@
   </div>
 </div>
 
-<!--scaffold
-<h1>Listing results</h1>
-
-<table >
-  <tr>
-    <th>Date</th>
-    <th>Hundred mts</th>
-    <th>Two hundred mts</th>
-    <th>Three hundred mts</th>
-    <th>Four hundred mts</th>
-    <th>Eight hundred mts</th>
-    <th>Thousand mts</th>
-    <th>Thousand five hundred mts</th>
-    <th>Cooper test</th>
-    <th>Squat rm</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-
-<%# @results.each do |result| %>
-  <tr>
-    <td><%#= result.date %></td>
-    <td><%#= result.hundred_mts %></td>
-    <td><%#= result.two_hundred_mts %></td>
-    <td><%#= result.three_hundred_mts %></td>
-    <td><%#= result.four_hundred_mts %></td>
-    <td><%#= result.eight_hundred_mts %></td>
-    <td><%#= result.thousand_mts %></td>
-    <td><%#= result.thousand_five_hundred_mts %></td>
-    <td><%#= result.cooper_test %></td>
-    <td><%#= result.squat_rm %></td>
-    <td><%#= link_to 'Show', [result.user, result] %></td>
-    <td><%#= link_to 'Edit', edit_user_result_path(result.user, result) %></td>
-    <td><%#= link_to 'Destroy', [result.user, result], method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
-<%# end %>
-</table>
-
-<br />
--->
-
 <%= link_to 'New Result', new_user_result_path(params[:user_id]) %>
 |
 <% if can?(:create, :program)%>
@@ -137,3 +99,53 @@
 <% else %>
   <%= link_to 'Volver', profile_path %>
 <% end %>
+
+<%= form_tag user_results_path, method: :get do %>
+  <%= hidden_field_tag :start %>
+  <%= hidden_field_tag :end %>
+<% end %>
+
+<script>
+  $("#rangepicker").daterangepicker({
+    startDate: moment("<%= l @inicio_graf, format: '%Y-%m-%d' %>"),
+    endDate: moment("<%= l @fin_graf, format: '%Y-%m-%d' %>"),
+    "locale": {
+        "format": "DD/MM/YYYY",
+        "separator": " - ",
+        "applyLabel": "Aplicar",
+        "cancelLabel": "Cancelar",
+        "fromLabel": "From",
+        "toLabel": "To",
+        "customRangeLabel": "Custom",
+        "daysOfWeek": [
+            "Do",
+            "Lu",
+            "Ma",
+            "Mi",
+            "Ju",
+            "Vi",
+            "Sá"
+        ],
+        "monthNames": [
+            "Enero",
+            "Febrero",
+            "Marzo",
+            "Abril",
+            "Mayo",
+            "Junio",
+            "Julio",
+            "Agosto",
+            "Septiembre",
+            "Octubre",
+            "Noviembre",
+            "Diciembre"
+        ],
+        "firstDay": 1
+    }
+  }, function(start, end, label) {
+    $("#start").val(start.format('YYYY-MM-DD'));
+    $("#end").val(end.format('YYYY-MM-DD'));
+
+    $("form").submit();
+  });
+</script>

@@ -6,6 +6,11 @@ class ResultsController < ApplicationController
   def index
     @todos = Result.all
     @results = @user.results
+
+    @inicio_graf = params[:start].try(:to_date) || 90.days.ago.to_date
+    @fin_graf = params[:end].try(:to_date) || Date.current
+    @range = (@inicio_graf..@fin_graf)
+
     @promedio_100 = (@todos.average(:hundred_mts))
     @promedio_200 = (@todos.average(:two_hundred_mts))
     @promedio_300 = (@todos.average(:three_hundred_mts))

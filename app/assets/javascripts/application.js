@@ -12,6 +12,9 @@
 //
 //= require rails-ujs
 //= require turbolinks
+//= require jquery
+//= require moment/moment
+//= require daterangepicker/daterangepicker
 //= require chartkick
 //= require Chart.bundle
 //= require_tree .
