@@ -1,94 +1,147 @@
 <br><br><br>
-<h3>Resultados</h3>
 
-<!--Version individual-->
-<%#= area_chart @results.group_by_month(:date).sum(:hundred_mts), max: (@promedio_100*2) , xtitle: "Fecha", ytitle: "Tiempo", suffix: " seg", thousands: ".",decimal: ","%>
-<!--Version grupal-->
-<%#= area_chart Result.group_by_month(:date).sum(:two_hundred_mts), xtitle: "Fecha", ytitle: "Tiempo", suffix: " seg", thousands: ".",decimal: ","%>
-
-<!--2 formas distintas-->
-<%#= area_chart @results.group_by_month(:date).sum(:hundred_mts) , xtitle: "Fecha", ytitle: "Tiempo", suffix: " seg", thousands: ".",decimal: ","%>
-<%#= area_chart [
-  {name: "Resultados", data: (@results.group_by_month(:date).sum(:hundred_mts)) },
-  {name: "Promedio", data: (Result.group_by_month(:date).maximum(:hundred_mts))},
-], xtitle: "Fecha", ytitle: "Tiempo", suffix: " seg", thousands: ".",decimal: ","%>
-<div class="input-group date">
-  <input type="text" id="rangepicker" >
+<div class="row">
+  <div class="intervalo col-md-4">
+    <h5>Intervalo:</h5>
+    <input type="text" id="rangepicker" class="form-control" >
+  </div>
+  <% if can?(:create, :program) %>
+    <div class="col-md-6 offset-md-2">
+      <p>usuario</p>
+    </div>
+  <% end %>
 </div>
 
+<br>
+
+<h3>Resultados</h3>
 
 <div class="row">
   <div class="col-md-6">
+    <br>
     <h4>100 mts</h4>
     <%= line_chart [
       {name: "Peor Marca", data: (@results.group_by_month(:date, range: @range).maximum(:hundred_mts)) },
       {name: "Mejor Marca", data: (@results.group_by_month(:date, range: @range).minimum(:hundred_mts)) },
       {name: "Mejor Marca General", data: (Result.group_by_month(:date, range: @range).minimum(:hundred_mts))},
     ], xtitle: "Fecha", ytitle: "Tiempo", suffix: " seg", thousands: ".",decimal: ",", messages: {empty: "No hay Información"} %>
+  <% if @promedio_100.present? and @promedio_100individual.present? %>
+    <p>El promedio general de 100 metros es de <b><%= "#{@promedio_100.round(2)}"%></b> segundos, mientras que tu promedio es de <b><%= "#{@promedio_100individual.round(2)}"%></b> segundos, por lo que en general eres mas <b><%=  @promedio_100 < @promedio_100individual ? "lento" : "rapido"%></b> que los demás en esta categoría. </p>
+  <% else %>
+    <b>El usuario aun no tiene informacion para analisis de resultados</b>
+  <% end %>
   </div>
   <div class="col-md-6">
+    <br>
     <h4>200 mts</h4>
     <%= line_chart [
-      {name: "Peor Marca", data: (@results.group_by_month(:date).maximum(:two_hundred_mts)) },
-      {name: "Mejor Marca", data: (@results.group_by_month(:date).minimum(:two_hundred_mts)) },
-      {name: "Mejor Marca General", data: (Result.group_by_month(:date).minimum(:two_hundred_mts))},
+      {name: "Peor Marca", data: (@results.group_by_month(:date, range: @range).maximum(:two_hundred_mts)) },
+      {name: "Mejor Marca", data: (@results.group_by_month(:date, range: @range).minimum(:two_hundred_mts)) },
+      {name: "Mejor Marca General", data: (Result.group_by_month(:date, range: @range).minimum(:two_hundred_mts))},
     ], xtitle: "Fecha", ytitle: "Tiempo", suffix: " seg", thousands: ".",decimal: ",", messages: {empty: "No hay Información"} %>
+    <% if @promedio_200.present? and @promedio_200individual.present? %>
+      <p>El promedio general de 200 metros es de <b><%= "#{@promedio_200.round(2)}"%></b> segundos, mientras que tu promedio es de <b><%= "#{@promedio_200individual.round(2)}"%></b> segundos, por lo que en general eres mas <b><%=  @promedio_200 < @promedio_200individual ? "lento" : "rapido"%></b> que los demás en esta categoría. </p >
+    <% else %>
+      <b>El usuario aun no tiene información para análisis de resultados</b>
+    <% end %>
   </div>
   <div class="col-md-6">
+    <br>
     <h4>300 mts</h4>
     <%= line_chart [
-      {name: "Peor Marca", data: (@results.group_by_month(:date).maximum(:three_hundred_mts)) },
-      {name: "Mejor Marca", data: (@results.group_by_month(:date).minimum(:three_hundred_mts)) },
-      {name: "Mejor Marca General", data: (Result.group_by_month(:date).minimum(:three_hundred_mts))},
+      {name: "Peor Marca", data: (@results.group_by_month(:date, range: @range).maximum(:three_hundred_mts)) },
+      {name: "Mejor Marca", data: (@results.group_by_month(:date, range: @range).minimum(:three_hundred_mts)) },
+      {name: "Mejor Marca General", data: (Result.group_by_month(:date, range: @range).minimum(:three_hundred_mts))},
     ], xtitle: "Fecha", ytitle: "Tiempo", suffix: " seg", thousands: ".",decimal: ",", messages: {empty: "No hay Información"} %>
+    <% if @promedio_300.present? and @promedio_300individual.present? %>
+      <p>El promedio general de 300 metros es de <b><%= "#{@promedio_300.round(2)}"%></b> segundos, mientras que tu promedio es de <b><%= "#{@promedio_300individual.round(2)}"%></b> segundos, por lo que en general eres mas <b><%=  @promedio_300 < @promedio_300individual ? "lento" : "rapido"%></b> que los demás en esta categoría. </p>
+    <% else %>
+      <b>El usuario aun no tiene información para análisis de resultados</b>
+    <% end %>
   </div>
   <div class="col-md-6">
+    <br>
     <h4>400 mts</h4>
     <%= line_chart [
-      {name: "Peor Marca", data: (@results.group_by_month(:date).maximum(:four_hundred_mts)) },
-      {name: "Mejor Marca", data: (@results.group_by_month(:date).minimum(:four_hundred_mts)) },
-      {name: "Mejor Marca General", data: (Result.group_by_month(:date).minimum(:four_hundred_mts))},
+      {name: "Peor Marca", data: (@results.group_by_month(:date, range: @range).maximum(:four_hundred_mts)) },
+      {name: "Mejor Marca", data: (@results.group_by_month(:date, range: @range).minimum(:four_hundred_mts)) },
+      {name: "Mejor Marca General", data: (Result.group_by_month(:date, range: @range).minimum(:four_hundred_mts))},
     ], xtitle: "Fecha", ytitle: "Tiempo", suffix: " seg", thousands: ".",decimal: ",", messages: {empty: "No hay Información"} %>
+    <% if @promedio_400.present? and @promedio_400individual.present? %>
+      <p>El promedio general de 400 metros es de <b><%= "#{@promedio_400.round(2)}"%></b> segundos, mientras que tu promedio es de <b><%= "#{@promedio_400individual.round(2)}"%></b> segundos, por lo que en general eres mas <b><%=  @promedio_400 < @promedio_400individual ? "lento" : "rapido"%></b> que los demás en esta categoría.   </p>
+    <% else %>
+      <b>El usuario aun no tiene información para análisis de resultados</b>
+    <% end %>
   </div>
   <div class="col-md-6">
+    <br>
     <h4>800 mts</h4>
     <%= line_chart [
-      {name: "Peor Marca", data: (@results.group_by_month(:date).maximum(:eight_hundred_mts)) },
-      {name: "Mejor Marca", data: (@results.group_by_month(:date).minimum(:eight_hundred_mts)) },
-      {name: "Mejor Marca General", data: (Result.group_by_month(:date).minimum(:eight_hundred_mts))},
+      {name: "Peor Marca", data: (@results.group_by_month(:date, range: @range).maximum(:eight_hundred_mts)) },
+      {name: "Mejor Marca", data: (@results.group_by_month(:date, range: @range).minimum(:eight_hundred_mts)) },
+      {name: "Mejor Marca General", data: (Result.group_by_month(:date, range: @range).minimum(:eight_hundred_mts))},
     ], xtitle: "Fecha", ytitle: "Tiempo", suffix: " seg", thousands: ".",decimal: ",", messages: {empty: "No hay Información"} %>
+    <% if @promedio_800.present? and @promedio_800individual.present? %>
+      <p>El promedio general de 800 metros es de <b><%= "#{@promedio_800.round(2)}"%></b> segundos, mientras que tu promedio es de <b><%= "#{@promedio_800individual.round(2)}"%></b> segundos, por lo que en general eres mas <b><%=  @promedio_800 < @promedio_800individual ? "lento" : "rapido"%></b> que los demás en esta categorí  a. </p>
+    <% else %>
+      <b>El usuario aun no tiene información para análisis de resultados</b>
+    <% end %>
   </div>
   <div class="col-md-6">
+    <br>
     <h4>1000 mts</h4>
     <%= line_chart [
-      {name: "Peor Marca", data: (@results.group_by_month(:date).maximum(:thousand_mts)) },
-      {name: "Mejor Marca", data: (@results.group_by_month(:date).minimum(:thousand_mts)) },
-      {name: "Mejor Marca General", data: (Result.group_by_month(:date).minimum(:thousand_mts))},
+      {name: "Peor Marca", data: (@results.group_by_month(:date, range: @range).maximum(:thousand_mts)) },
+      {name: "Mejor Marca", data: (@results.group_by_month(:date, range: @range).minimum(:thousand_mts)) },
+      {name: "Mejor Marca General", data: (Result.group_by_month(:date, range: @range).minimum(:thousand_mts))},
     ], xtitle: "Fecha", ytitle: "Tiempo", suffix: " seg", thousands: ".",decimal: ",", messages: {empty: "No hay Información"} %>
+    <% if @promedio_1000.present? and @promedio_1000individual.present? %>
+      <p>El promedio general de 1000 metros es de <b><%= "#{@promedio_1000.round(2)}"%></b> segundos, mientras que tu promedio es de <b><%= "#{@promedio_1000individual.round(2)}"%></b> segundos, por lo que en general eres mas <b><%=  @promedio_1000 < @promedio_1000individual ? "lento" : "rapido"%></b> que los demás en esta catego  ría. </p>
+    <% else %>
+      <b>El usuario aun no tiene información para análisis de resultados</b>
+    <% end %>
   </div>
   <div class="col-md-6">
+    <br>
     <h4>1500 mts</h4>
     <%= line_chart [
-      {name: "Peor Marca", data: (@results.group_by_month(:date).maximum(:thousand_five_hundred_mts)) },
-      {name: "Mejor Marca", data: (@results.group_by_month(:date).minimum(:thousand_five_hundred_mts)) },
-      {name: "Mejor Marca General", data: (Result.group_by_month(:date).minimum(:thousand_five_hundred_mts))},
+      {name: "Peor Marca", data: (@results.group_by_month(:date, range: @range).maximum(:thousand_five_hundred_mts)) },
+      {name: "Mejor Marca", data: (@results.group_by_month(:date, range: @range).minimum(:thousand_five_hundred_mts)) },
+      {name: "Mejor Marca General", data: (Result.group_by_month(:date, range: @range).minimum(:thousand_five_hundred_mts))},
     ], xtitle: "Fecha", ytitle: "Tiempo", suffix: " seg", thousands: ".",decimal: ",", messages: {empty: "No hay Información"} %>
+    <% if @promedio_1500.present? and @promedio_1500individual.present? %>
+      <p>El promedio general de 1500 metros es de <b><%= "#{@promedio_1500.round(2)}"%></b> segundos, mientras que tu promedio es de <b><%= "#{@promedio_1500individual.round(2)}"%></b> segundos, por lo que en general eres mas <b><%=  @promedio_1500 < @promedio_1500individual ? "lento" : "rapido"%></b> que los demás en esta cate  goría. </p>
+    <% else %>
+      <b>El usuario aun no tiene información para análisis de resultados</b>
+    <% end %>
   </div>
   <div class="col-md-6">
+    <br>
     <h4>Test de Copper</h4>
     <%= line_chart [
-      {name: "Peor Marca", data: (@results.group_by_month(:date).minimum(:cooper_test)) },
-      {name: "Mejor Marca", data: (@results.group_by_month(:date).maximum(:cooper_test)) },
-      {name: "Mejor Marca General", data: (Result.group_by_month(:date).maximum(:cooper_test))},
+      {name: "Peor Marca", data: (@results.group_by_month(:date, range: @range).minimum(:cooper_test)) },
+      {name: "Mejor Marca", data: (@results.group_by_month(:date, range: @range).maximum(:cooper_test)) },
+      {name: "Mejor Marca General", data: (Result.group_by_month(:date, range: @range).maximum(:cooper_test))},
     ], xtitle: "Fecha", ytitle: "Distancia", suffix: "mts", thousands: ".",decimal: ",", messages: {empty: "No hay Información"} %>
+    <% if @promedio_CT.present? and @promedio_CTindividual.present? %>
+      <p>El promedio general en el Test de Copper es de <b><%= "#{@promedio_CT.round(2)}"%></b> metros, mientras que tu promedio es de <b><%= "#{@promedio_CTindividual.round(2)}"%></b> metros, por lo que en general eres mas <b> <%=  @promedio_CT < @promedio_CTindividual ? "rapido" : "lento"%></b> que los demás en esta cat  egoría.  </p>
+    <% else %>
+      <b>El usuario aun no tiene información para análisis de resultados</b>
+    <% end %>
   </div>
   <div class="col-md-6">
+    <br>
     <h4>Sentadilla Máximo</h4>
     <%= line_chart [
-      {name: "Peor Marca", data: (@results.group_by_month(:date).minimum(:squat_rm)) },
-      {name: "Mejor Marca", data: (@results.group_by_month(:date).maximum(:squat_rm)) },
-      {name: "Mejor Marca General", data: (Result.group_by_month(:date).maximum(:squat_rm))},
+      {name: "Peor Marca", data: (@results.group_by_month(:date, range: @range).minimum(:squat_rm)) },
+      {name: "Mejor Marca", data: (@results.group_by_month(:date, range: @range).maximum(:squat_rm)) },
+      {name: "Mejor Marca General", data: (Result.group_by_month(:date, range: @range).maximum(:squat_rm))},
     ], xtitle: "Fecha", ytitle: "Peso", suffix: " Kg", thousands: ".",decimal: ",", messages: {empty: "No hay Información"} %>
+    <% if @promedio_Squat.present? and @promedio_Squatindividual.present? %>
+      <p>El promedio general en la sentadilla máxima es de <b><%= "#{@promedio_Squat.round(2)}"%></b> Kilogramos, mientras que tu promedio es de <b><%= "#{@promedio_Squatindividual.round(2)}"%></b> Kilogramos, por lo que en general tienes<b>  <%=  @promedio_Squat < @promedio_Squatindividual ? "mas explosividad en las piernas" : "menos explosividad en las piernas"%></b> que los demás en esta c  ategoría.  </p>
+    <% else %>
+      <b>El usuario aun no tiene información para análisis de resultados</b>
+    <% end %>
   </div>
 </div>
 
@@ -114,8 +167,8 @@
         "separator": " - ",
         "applyLabel": "Aplicar",
         "cancelLabel": "Cancelar",
-        "fromLabel": "From",
-        "toLabel": "To",
+        "fromLabel": "De",
+        "toLabel": "Hasta",
         "customRangeLabel": "Custom",
         "daysOfWeek": [
             "Do",
