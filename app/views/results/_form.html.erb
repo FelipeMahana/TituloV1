@@ -5,7 +5,7 @@
 
       <ul>
       <% @result.errors.full_messages.each do |msg| %>
-        <li><%= msg %>asdasd</li>
+        <li><%= msg %></li>
       <% end %>
       </ul>
     </div>
@@ -14,37 +14,37 @@
   <div class="field form-text form-group">
     <%= f.label :cien_metros %>
     <em>(Seg)</em>
-    <%= f.number_field :hundred_mts, min: 9.5, step: 0.1, placeholder: 'Ingrese Resultado', class: 'form-control'  %>
+    <%= f.number_field :hundred_mts, min: 9.5, max: 1000, step: 0.1, placeholder: 'Ingrese Resultado', class: 'form-control'  %>
   </div>
   <div class="field form-text form-group">
     <%= f.label :doscientos_metros %>
     <em>(Seg)</em>
-    <%= f.number_field :two_hundred_mts, min: 19.2, step: 0.1, placeholder: 'Ingrese Resultado', class: 'form-control'  %>
+    <%= f.number_field :two_hundred_mts, min: 19.2, max: 1000, step: 0.1, placeholder: 'Ingrese Resultado', class: 'form-control'  %>
   </div>
   <div class="field form-text form-group">
     <%= f.label :trescientos_metros %>
-    <em>(Seg)31.5</em>
-    <%= f.number_field :three_hundred_mts, in: 21...200, placeholder: 'Ingrese Resultado', class: 'form-control'   %>
+    <em>(Seg)</em>
+    <%= f.number_field :three_hundred_mts, min: 31.5, max: 1000, step: 0.1, placeholder: 'Ingrese Resultado', class: 'form-control'   %>
   </div>
   <div class="field form-text form-group">
     <%= f.label :cuatrocientos_metros %>
     <em>(Seg)</em>
-    <%= f.number_field :four_hundred_mts, min: 43.2, step: 0.1 placeholder: 'Ingrese Resultado', class: 'form-control'   %>
+    <%= f.number_field :four_hundred_mts, min: 43.2, max: 1000, step: 0.1, placeholder: 'Ingrese Resultado', class: 'form-control'   %>
   </div>
   <div class="field form-text form-group">
     <%= f.label :ochocientos_metros %>
     <em>(Seg)</em>
-    <%= f.number_field :eight_hundred_mts, in: 50...200, placeholder: 'Ingrese Resultado', class: 'form-control'   %>
+    <%= f.number_field :eight_hundred_mts, min: 101.2, max: 1000, step: 0.1, placeholder: 'Ingrese Resultado', class: 'form-control'   %>
   </div>
   <div class="field form-text form-group">
     <%= f.label :mil_metros %>
     <em>(Seg)</em>
-    <%= f.number_field :thousand_mts, in: 70...200, placeholder: 'Ingrese Resultado', class: 'form-control'   %>
+    <%= f.number_field :thousand_mts, min: 132, max: 1000, step: 0.1, placeholder: 'Ingrese Resultado', class: 'form-control'   %>
   </div>
   <div class="field form-text form-group">
     <%= f.label :mil_quinientos_metros %>
     <em>(Seg)</em>
-    <%= f.number_field :thousand_five_hundred_mts, in: 100...200, placeholder: 'Ingrese Resultado', class: 'form-control'   %>
+    <%= f.number_field :thousand_five_hundred_mts, min: 206, max: 1000, step: 0.1, placeholder: 'Ingrese Resultado', class: 'form-control'   %>
   </div>
   <div class="field form-text form-group">
     <%= f.label :test_de_cooper %>
