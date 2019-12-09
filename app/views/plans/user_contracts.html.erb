@@ -9,7 +9,8 @@
         <th>Usuario</th>
         <th>Plan</th>
         <th>Fecha Contrato</th>
-        <th>Duracion Plan(mes)</th>
+        <th>Meses</th>
+        <th>Categoría</th>
         <th></th>
       </tr>
     </thead>
@@ -60,6 +61,13 @@
               <%= end_date_contract.strftime('%d/%m/%Y')  %>
               <%#= user.contracts.last.end_date%>
             </td>-->
+
+            <!--Categoria-->
+            <td>
+              <% unless user.contracts.last.nil? %>
+                <%= user.contracts.last.category.to_s %>
+              <% end %>
+            </td>
 
             <td>
               <div class="btn-group" role="group">

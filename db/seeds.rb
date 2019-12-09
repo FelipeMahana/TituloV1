@@ -36,6 +36,9 @@ plan5 = Plan.create(price: 160, duration: 3, contract_type: 2, description: Fake
 #plan 3 meses entrenamiento y nutricion
 plan6 = Plan.create(price: 300, duration: 3, contract_type: 3, description: Faker::Lorem.paragraph)
 
+###Definiendo Array de categoría
+categoryArray = ['100 mts', '200 mts', '400 mts', '800 mts', '1500 mts', '4 x 100 mts', '4 x 400 mts']
+
 ###Creacion de usuario profesor###
 User.create(name: "entrenador1", email: "entrenador1@gmail.com", password: "123123", role: 'admin')
 User.create(name: "entrenador2", email: "entrenador2@gmail.com", password: "123123", role: 'admin')
@@ -51,6 +54,6 @@ fecha = DateTime.now
 		#Malo
 		result = Result.create(date: (fecha << j), hundred_mts: rand(13..20), two_hundred_mts: rand(25..40), three_hundred_mts: rand(42..55), four_hundred_mts: rand(51..60), eight_hundred_mts: rand(110..120),thousand_mts: rand(131..150), thousand_five_hundred_mts: rand(273..300), cooper_test: rand(2000..3000), squat_rm: rand(100..160), user: usuario)
 	end
-	contrato = Contract.create(weight: rand(30..150), height: rand(60..230),goal: Faker::Lorem.paragraph, age: rand(10..100), sex:rand(1..2), pending: true, user: usuario, plan: plan3)
+	contrato = Contract.create(weight: rand(30..150), height: rand(60..230),goal: Faker::Lorem.paragraph, age: rand(10..100), sex:rand(1..2), pending: true, category: categoryArray.sample, user: usuario, plan: plan3)
 
 end

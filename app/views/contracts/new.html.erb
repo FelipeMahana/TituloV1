@@ -7,24 +7,28 @@
 			<div class="field form-text form-group">
 				<%=form.label :peso %>
 				<em>(Kg)</em>
-				<%=form.number_field :weight, in: 10...200, placeholder: 'Ingrese Peso', class: 'form-control' %>
+				<%=form.number_field :weight, in: 10...200, placeholder: 'Ingrese Peso', class: 'form-control', required: true %>
 			</div>
 			<div class="field form-text form-group">
 					<%=form.label :estatura %>
 					<em>(Cms)</em>
-					<%=form.number_field :height, in: 55...273, placeholder: 'Ingrese Estatura', class: 'form-control' %>
+					<%=form.number_field :height, in: 55...273, placeholder: 'Ingrese Estatura', class: 'form-control', required: true %>
 			</div>
 			<div class="field form-text form-group">
 				<%=form.label :edad %>
-				<%=form.number_field :age, in: 1...131, placeholder: 'Ingrese Edad', class: 'form-control' %>
+				<%=form.number_field :age, in: 1...131, placeholder: 'Ingrese Edad', class: 'form-control', required: true %>
 			</div>
 			<div class="field form-text form-group ">
 				<%=form.label :sexo %>
 				<%=form.select(:sex, options_for_select([['Hombre', 1], ['Mujer', 2]]),{}, {class: 'form-control'}) %>
 			</div>
+			<div class="field form-text form-group ">
+				<%=form.label :categoría %>
+				<%=form.select(:category, options_for_select([['100 metros', '100 mts'], ['200 metros', '200 mts'], ['400 metros', '400 mts'], ['800 metros', '800 mts'], ['1500 metros', '1500 mts'], ['4 x 100 metros', '4 x 100 mts'], ['4 x 400 metros', '4 x 400 mts']]),{}, {class: 'form-control'}) %>
+			</div>
 			<div class="field form-text form-group">
 				<%=form.label :objetivo %>
-				<%=form.text_area :goal, placeholder: 'Ingrese Objetivo', class: 'form-control' %>
+				<%=form.text_area :goal, placeholder: 'Ingrese Objetivo', class: 'form-control', required: true %>
 			</div>
 			<div class="field form-text text-muted form-group">
 				<%=form.label :porcentaje_de_grasa %>

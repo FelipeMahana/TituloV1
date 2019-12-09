@@ -49,7 +49,7 @@ class ContractsController < ApplicationController
 	private
 
 	def set_params
-		params.require(:contract).permit(:weight, :height, :age, :sex, :commit, :goal, :fat_percentage, :plan_id, :end_date, :start_date)
+		params.require(:contract).permit(:weight, :height, :age, :sex, :commit, :goal, :fat_percentage, :plan_id, :end_date, :start_date, :category)
 	end
 
 	def set_contract

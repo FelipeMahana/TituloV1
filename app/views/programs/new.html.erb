@@ -11,21 +11,27 @@
 <div class="row">
 	<div class="col-md-4 mb-4">
 		<div class="card">
-			<div class="card-body text-center">
+			<div class="card-body text-center ">
 				<% if @user.name.present? %>
 					<h5 class="card-title"> <%= @user.name %> </h5>
 				<% else %>
 					<h5 class="card-title"> <%= @user.email %> </h5>
 				<% end %>
-				<p class="card-text">Tipo plan: <%= @plan.contract_type %> </p>
-				<p class="card-text">Duracion plan: <%= @plan.duration %> </p>
-				<p class="card-text">Descripcion o tipo(?): <%= @plan.description %> </p>
+				<% if @plan.contract_type == 1%>
+					<p class="card-text">Tipo plan: Plan Entrenamiento</p>
+				<% elsif @plan.contract_type == 2 %>
+					<p class="card-text">Tipo plan: Plan Nutrición</p>
+				<% else %>
+					<p class="card-text">Tipo plan: Plan Entrenamiento con Nutrición </p>
+				<% end %>
+				<p class="card-text">Duracion plan: <%= @plan.duration %> Mes(es)</p>
+				<p class="card-text">Descripcion: <%= @plan.description %> </p>
 		 	</div>
 		</div>
 	</div>
 	<div class="offset-md-2 col-md-4 mb-4">
 		<div class="card">
-			<div class="card-body text-center">
+			<div class="card-body text-center ">
 				<h5 class="card-title"> Datos Cliente </h5>
 				<p class="card-title">Edad: <%= @contract.age %> </p>
 				<% if @contract.sex == 1 %>
@@ -35,6 +41,7 @@
 				<% end %>
 				<p class="card-text">Peso: <%= @contract.weight %> kg </p>
 				<p class="card-text">Estatura: <%= @contract.height %> cms </p>
+				<p class="card-title">Categoría: <%= @contract.category %> </p>
 				<p class="card-title">Objetivo: <%= @contract.goal %> </p>
 		 	</div>
 		</div>
@@ -78,18 +85,18 @@
 
 	<div class="row">
 		<div class="col-md-4 mb-4">
-		<%=form_with(model: [@plan, @contract, @user ,@program], local: true) do |form| %>
-			<%=form.label :training %> <br>
-			<%=form.text_area(:training, rows: 20, cols: 50, placeholder: 'Ingrese Rutina Entrenamiento', class: 'form-control') %>
-			<br>
-			<%=form.label :nutrition %> <br>
-			<%=form.text_area(:nutrition, rows: 20, cols: 50, placeholder: 'Ingrese Plan Nutricional', class: 'form-control') %>
-			<br>
-			<%= form.submit 'crear' %>
-			<br>
-			<%= link_to 'volver a user contracts', user_contracts_path %>
-			<% end %>
+			<%=form_with(model: [@plan, @contract, @user ,@program], local: true) do |form| %>
+				<%=form.label :training %> <br>
+				<%=form.text_area(:training, rows: 20, cols: 50, placeholder: 'Ingrese Rutina Entrenamiento', class: 'form-control') %>
+		</div>
+		<div class="offset-md-2 col-md-4 mb-4">
+				<%=form.label :nutrition %> <br>
+				<%=form.text_area(:nutrition, rows: 20, cols: 50, placeholder: 'Ingrese Plan Nutricional', class: 'form-control') %>
 		</div>
 	</div>
+				<%= form.submit 'crear' %>
+				<br>
+				<%= link_to 'volver a user contracts', user_contracts_path %>
+			<% end %>
 
 <% end %>
