@@ -2,14 +2,20 @@
 <div class="perfil">
 	<% if current_user.contracts.present? %>
 		<div class="row">
-			<div class="col-md-6 mb-4">
-				<h3>Perfil</h3>
-				<% if current_user.name.present? %>
-					<p>  Nombre: <%= current_user.name %> </p>
-					<p>  Correo: <%= current_user.email %> </p>
-				<% else %>
-					<p>  Correo: <%= current_user.email %> </p>
-				<% end %>
+			<div class="col-md-6 mb-4 offset-md-3">
+				<div class="card h-100 border-dark mb-3">
+					<div class="card-header">
+						<h5 class="card-title text-center">Perfil</h5>
+					</div>
+					<div class="card-body">
+						<% if current_user.name.present? %>
+							<p class="card-text">  Nombre: <%= current_user.name %> </p>
+							<p class="card-text">  Correo: <%= current_user.email %> </p>
+						<% else %>
+							<p class="card-text">  Correo: <%= current_user.email %> </p>
+						<% end %>
+					</div>
+				</div>
 			</div>
 		</div>
 
@@ -17,31 +23,35 @@
 			<div class="col-md-12">
 				<div class="row">
 					<div class="col-md-6 mb-1">
-						<h5>Datos</h5>
-							<div class="card">
-								<div class="card-body">
-									<p>Edad: <%= current_user.contracts.last.age %></p>
+							<div class="card h-100 border-dark mb-3">
+								<div class="card-header">
+									<h5>Datos Personales</h5>
+								</div>
+								<div class="card-body card-datos">
+									<p class="card-text">Edad: <%= current_user.contracts.last.age %></p>
 									<% if current_user.contracts.last.sex == 1 %>
-										<p> Sexo: Masculino </p>
+										<p class="card-text"> Sexo: Masculino </p>
 									<% else %>
-										<p>Sexo: Femenino </p>
+										<p class="card-text">Sexo: Femenino </p>
 									<% end %>
-										<p>Peso: <%= current_user.contracts.last.weight %> kg</p>
-										<p>Estatura: <%= current_user.contracts.last.height %> cms </p>
+										<p class="card-text">Peso: <%= current_user.contracts.last.weight %> kg</p>
+										<p class="card-text">Estatura: <%= current_user.contracts.last.height %> cms </p>
 								</div>
 							</div>
 					</div>
 					<div class="col-md-6 ">
-						<h5>Datos Entrenador</h5>
-							<div class="card">
-								<div class="card-body">
+							<div class="card h-100 border-dark mb-3">
+								<div class="card-header">
+									<h5>Datos Entrenador</h5>
+								</div>
+								<div class="card-body card-datos">
 									<% if current_user.contracts.last.programs.last.try(:coach_name).present? %>
-										<p>Nombre: <%= current_user.contracts.last.programs.last.coach_name %></p>
-										<p>Correo: <%= current_user.contracts.last.programs.last.coach_mail %></p>
+										<p class="card-text">Nombre: <%= current_user.contracts.last.programs.last.coach_name %></p>
+										<p class="card-text">Correo: <%= current_user.contracts.last.programs.last.coach_mail %></p>
 									<% elsif current_user.contracts.last.programs.last.try(:coach_mail).present? %>
-										<p>Correo: <%= current_user.contracts.last.programs.last.try(:coach_mail) %></p>
+										<p class="card-text">Correo: <%= current_user.contracts.last.programs.last.try(:coach_mail) %></p>
 									<% else %>
-										<p>No tiene enrenador asociado</p>
+										<p class="card-text">No tiene enrenador asociado</p>
 									<% end %>
 								</div>
 							</div>
@@ -52,18 +62,19 @@
 
 	<br>
 		<div class="row">
-			<div class="col-md-10 offset-md-2">
+			<div class="col-md-5 offset-md-1">
 				<div class="btn-group" role="group">
 					<%= link_to "Agregar Resultados", new_user_result_path(current_user.id), :class=>"btn btn-outline-success"%>
 					<%= link_to "Visualizar Estadisticas", user_results_path(current_user.id), :class=>"btn btn-outline-success"%>
-					<% if current_user.results.present? %>
+					<%# if current_user.results.present? %>
 						<!--En algun lado cambie el orden de last a first -->
-						<%= link_to "Visualizar Resultado", user_result_path(current_user.id,current_user.results.first.id), :class=>"btn btn-outline-success"%>
-					<% end %>
+						<%#= link_to "Visualizar Resultado", user_result_path(current_user.id,current_user.results.first.id), :class=>"btn btn-outline-success"%>
+					<%# end %>
 				</div>
 			</div>
 		</div>
 
+<br>
 
 		<div class="row">
 			<div class="col-md-12">
@@ -87,10 +98,12 @@
 							<% if current_user.contracts.last.plan.contract_type==1 %>
 								<div class="row">
 									<div class="col-md-6 mb-4">
-										<div class="card">
+										<div class="card border-dark mb-3">
+											<div class="card-header">
+												<h5 class="card-title text-center">Rutina entrenamiento</h5>
+											</div>
 											<div class="card-body">
-												<h5>Rutina entrenamiento</h5>
-												<p><%= simple_format(current_user.contracts.last.programs.last.training) %></p>
+												<p class="card-text"><%= simple_format(current_user.contracts.last.programs.last.training) %></p>
 											</div>
 										</div>
 									</div>
@@ -98,10 +111,12 @@
 							<% elsif current_user.contracts.last.plan.contract_type==2 %>
 								<div class="row">
 									<div class="col-md-6 mb-4">
-										<div class="card">
+										<div class="card border-dark mb-3">
+											<div class="card-header">
+												<h5 class="card-title text-center">Plan Nutricional</h5>
+											</div>
 											<div class="card-body">
-												<h5>Plan Nutricional</h5>
-												<p><%= simple_format(current_user.contracts.last.programs.last.nutrition) %></p>
+												<p class="card-text"><%= simple_format(current_user.contracts.last.programs.last.nutrition) %></p>
 											</div>
 										</div>
 									</div>
@@ -109,18 +124,22 @@
 							<% else %>
 								<div class="row">
 									<div class="col-md-6 mb-1">
-										<div class="card">
+										<div class="card border-dark mb-3">
+											<div class="card-header">
+												<h5 class="card-title text-center">Rutina entrenamiento</h5>
+											</div>
 											<div class="card-body">
-												<h5>Rutina entrenamiento</h5>
-												<p><%= simple_format(current_user.contracts.last.programs.last.training) %></p>
+												<p class="card-text"><%= simple_format(current_user.contracts.last.programs.last.training) %></p>
 											</div>
 										</div>
 									</div>
 									<div class="col-md-6 ">
-										<div class="card">
+										<div class="card border-dark mb-3">
+											<div class="card-header">
+												<h5 class="card-title text-center">Plan Nutricional</h5>
+											</div>
 											<div class="card-body">
-												<h5>Plan Nutricional</h5>
-												<p><%= simple_format(current_user.contracts.last.programs.last.nutrition) %></p>
+												<p class="card-text"><%= simple_format(current_user.contracts.last.programs.last.nutrition) %></p>
 											</div>
 										</div>
 									</div>
@@ -131,9 +150,9 @@
 					<% else %>
 						<div class="row">
 							<div class="col-md-6 mb-6">
-								<div class="card">
+								<div class="card border-dark mb-3">
 									<div class="card-body">
-									<p>Tu plan se encuentra vencido, por favor actualizar</p>
+										<p class="card-text">Tu plan se encuentra vencido, por favor actualizar</p>
 									</div>
 								</div>
 							</div>
@@ -144,9 +163,9 @@
 				<% else %>
 					<div class="row">
 						<div class="col-md-6 mb-6">
-							<div class="card">
+							<div class="card border-dark mb-3">
 								<div class="card-body">
-								<p>No tiene rutina de entrenamiento</p>
+									<p class="card-text">No tiene rutina de entrenamiento</p>
 								</div>
 							</div>
 						</div>
