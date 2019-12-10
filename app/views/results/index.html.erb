@@ -2,7 +2,7 @@
 
 <div class="row">
   <div class="intervalo col-md-4">
-    <h5>Intervalo:</h5>
+    <h5>Intervalo Fechas:</h5>
     <input type="text" id="rangepicker" class="form-control" >
   </div>
   <% if can?(:create, :program) %>
@@ -96,7 +96,7 @@
       {name: "Mejor Marca General", data: (Result.group_by_month(:date, range: @range).minimum(:eight_hundred_mts))},
     ], xtitle: "Fecha", ytitle: "Tiempo", suffix: " seg", thousands: ".",decimal: ",", messages: {empty: "No hay Información"} %>
     <% if @promedio_800.present? and @promedio_800individual.present? %>
-      <p>El promedio general de 800 metros es de <b><%= "#{@promedio_800.round(2)}"%></b> segundos, mientras que tu promedio es de <b><%= "#{@promedio_800individual.round(2)}"%></b> segundos, por lo que en general eres mas <b><%=  @promedio_800 < @promedio_800individual ? "lento" : "rapido"%></b> que los demás en esta categorí  a. </p>
+      <p>El promedio general de 800 metros es de <b><%= "#{@promedio_800.round(2)}"%></b> segundos, mientras que tu promedio es de <b><%= "#{@promedio_800individual.round(2)}"%></b> segundos, por lo que en general eres mas <b><%=  @promedio_800 < @promedio_800individual ? "lento" : "rapido"%></b> que los demás en esta categoría. </p>
     <% else %>
       <b>El usuario aun no tiene información para análisis de resultados</b>
     <% end %>
@@ -110,7 +110,7 @@
       {name: "Mejor Marca General", data: (Result.group_by_month(:date, range: @range).minimum(:thousand_mts))},
     ], xtitle: "Fecha", ytitle: "Tiempo", suffix: " seg", thousands: ".",decimal: ",", messages: {empty: "No hay Información"} %>
     <% if @promedio_1000.present? and @promedio_1000individual.present? %>
-      <p>El promedio general de 1000 metros es de <b><%= "#{@promedio_1000.round(2)}"%></b> segundos, mientras que tu promedio es de <b><%= "#{@promedio_1000individual.round(2)}"%></b> segundos, por lo que en general eres mas <b><%=  @promedio_1000 < @promedio_1000individual ? "lento" : "rapido"%></b> que los demás en esta catego  ría. </p>
+      <p>El promedio general de 1000 metros es de <b><%= "#{@promedio_1000.round(2)}"%></b> segundos, mientras que tu promedio es de <b><%= "#{@promedio_1000individual.round(2)}"%></b> segundos, por lo que en general eres mas <b><%=  @promedio_1000 < @promedio_1000individual ? "lento" : "rapido"%></b> que los demás en esta categoría. </p>
     <% else %>
       <b>El usuario aun no tiene información para análisis de resultados</b>
     <% end %>
@@ -124,7 +124,7 @@
       {name: "Mejor Marca General", data: (Result.group_by_month(:date, range: @range).minimum(:thousand_five_hundred_mts))},
     ], xtitle: "Fecha", ytitle: "Tiempo", suffix: " seg", thousands: ".",decimal: ",", messages: {empty: "No hay Información"} %>
     <% if @promedio_1500.present? and @promedio_1500individual.present? %>
-      <p>El promedio general de 1500 metros es de <b><%= "#{@promedio_1500.round(2)}"%></b> segundos, mientras que tu promedio es de <b><%= "#{@promedio_1500individual.round(2)}"%></b> segundos, por lo que en general eres mas <b><%=  @promedio_1500 < @promedio_1500individual ? "lento" : "rapido"%></b> que los demás en esta cate  goría. </p>
+      <p>El promedio general de 1500 metros es de <b><%= "#{@promedio_1500.round(2)}"%></b> segundos, mientras que tu promedio es de <b><%= "#{@promedio_1500individual.round(2)}"%></b> segundos, por lo que en general eres mas <b><%=  @promedio_1500 < @promedio_1500individual ? "lento" : "rapido"%></b> que los demás en esta categoría. </p>
     <% else %>
       <b>El usuario aun no tiene información para análisis de resultados</b>
     <% end %>
@@ -138,7 +138,7 @@
       {name: "Mejor Marca General", data: (Result.group_by_month(:date, range: @range).maximum(:cooper_test))},
     ], xtitle: "Fecha", ytitle: "Distancia", suffix: "mts", thousands: ".",decimal: ",", messages: {empty: "No hay Información"} %>
     <% if @promedio_CT.present? and @promedio_CTindividual.present? %>
-      <p>El promedio general en el Test de Copper es de <b><%= "#{@promedio_CT.round(2)}"%></b> metros, mientras que tu promedio es de <b><%= "#{@promedio_CTindividual.round(2)}"%></b> metros, por lo que en general eres mas <b> <%=  @promedio_CT < @promedio_CTindividual ? "rapido" : "lento"%></b> que los demás en esta cat  egoría.  </p>
+      <p>El promedio general en el Test de Copper es de <b><%= "#{@promedio_CT.round(2)}"%></b> metros, mientras que tu promedio es de <b><%= "#{@promedio_CTindividual.round(2)}"%></b> metros, por lo que en general eres mas <b> <%=  @promedio_CT < @promedio_CTindividual ? "rapido" : "lento"%></b> que los demás en esta categoría.  </p>
     <% else %>
       <b>El usuario aun no tiene información para análisis de resultados</b>
     <% end %>
@@ -152,20 +152,24 @@
       {name: "Mejor Marca General", data: (Result.group_by_month(:date, range: @range).maximum(:squat_rm))},
     ], xtitle: "Fecha", ytitle: "Peso", suffix: " Kg", thousands: ".",decimal: ",", messages: {empty: "No hay Información"} %>
     <% if @promedio_Squat.present? and @promedio_Squatindividual.present? %>
-      <p>El promedio general en la sentadilla máxima es de <b><%= "#{@promedio_Squat.round(2)}"%></b> Kilogramos, mientras que tu promedio es de <b><%= "#{@promedio_Squatindividual.round(2)}"%></b> Kilogramos, por lo que en general tienes<b>  <%=  @promedio_Squat < @promedio_Squatindividual ? "mas explosividad en las piernas" : "menos explosividad en las piernas"%></b> que los demás en esta c  ategoría.  </p>
+      <p>El promedio general en la sentadilla máxima es de <b><%= "#{@promedio_Squat.round(2)}"%></b> Kilogramos, mientras que tu promedio es de <b><%= "#{@promedio_Squatindividual.round(2)}"%></b> Kilogramos, por lo que en general tienes<b>  <%=  @promedio_Squat < @promedio_Squatindividual ? "mas explosividad en las piernas" : "menos explosividad en las piernas"%></b> que los demás en esta categoría.  </p>
     <% else %>
       <b>El usuario aun no tiene información para análisis de resultados</b>
     <% end %>
   </div>
 </div>
 
-<%= link_to 'New Result', new_user_result_path(params[:user_id]) %>
-|
-<% if can?(:create, :program)%>
-  <%= link_to 'Volver', user_contracts_path %>
-<% else %>
-  <%= link_to 'Volver', profile_path %>
-<% end %>
+<%#= link_to 'New Result', new_user_result_path(params[:user_id]) %>
+<div class="row">
+  <div class="col-md-6 mb-4">
+    <% if can?(:create, :program)%>
+      <%= link_to 'Volver', user_contracts_path, class: 'btn btn-success' %>
+    <% else %>
+      <%= link_to 'Volver', profile_path, class: 'btn btn-success' %>
+    <% end %>
+  </div>
+</div>
+
 
 <%= form_tag user_results_path, method: :get do %>
   <%= hidden_field_tag :start %>

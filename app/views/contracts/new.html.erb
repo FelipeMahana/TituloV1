@@ -36,9 +36,9 @@
 				<%=form.number_field :fat_percentage, in: 1...101, placeholder: 'Ingrese % Grasa', class: 'form-control' %>
 			</div>
 			<div class="field form-group">
-				<%= form.submit 'crear' %>
+				<%= form.submit 'Crear', class: 'btn btn-success' %>
 			</div>
-			<%= link_to 'volver a index', root_path %>
+			<%= link_to 'Volver a Inicio', root_path %>
 		<% end %>
 	</div>
 

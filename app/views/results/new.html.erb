@@ -1,8 +1,13 @@
 <br><br><br>
 <h1>Nuevo Resultado</h1>
 
+
 <%= render 'form' %>
 
-<%= link_to 'Back', user_results_path(@result.user) %>
-
-<%= link_to 'volver perfil', profile_path %>
+<%#= link_to 'Back', user_results_path(@result.user) %>
+<br>
+<div class="row">
+  <div class="col-md-6 mb-4">
+    <%= link_to 'Volver a perfil', profile_path %>
+  </div>
+</div>
