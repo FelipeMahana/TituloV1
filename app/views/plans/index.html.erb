@@ -18,15 +18,8 @@
 <div class="row">
 	<% @plans.order("duration").each do | plans | %>
 		<div class="col-md-4 mb-4">
-			<div class="card card-index h-100">
-				<% if plans.contract_type == 1%>
-					<%= image_tag("cart1.jpg",class: "card-img-top", size: "200x200", alt: "...")%>
-				<% elsif plans.contract_type == 2 %>
-					<%= image_tag("cart2.jpg",class: "card-img-top", size: "200x200", alt: "...")%>
-				<% else %>
-					<%= image_tag("cart3.jpg",class: "card-img-top", size: "200x200", alt: "...")%>
-				<% end %>
-				<div class="card-body text-center">
+			<div class="card h-100 border-success mb-3">
+				<div class="card-header text-center">
 					<% if plans.contract_type == 1%>
 						<h5 class="card-title"> Plan Entrenamiento </h5>
 					<% elsif plans.contract_type == 2 %>
@@ -34,11 +27,20 @@
 					<% else %>
 						<h5 class="card-title"> Plan Entrenamiento con Nutrición </h5>
 					<% end %>
-					<p class="card-title">Precio: $<%= plans.price %> </p>
-					<p class="card-text">La duracion del plan <%= plans.duration %> mes o meses</p>
-					<p class="card-text"><%= plans.description %> </p>
-					<a href="<%= new_plan_contract_path(plans)%>" class="btn btn-success">Contratar</a>
-			 	</div>
+				</div>
+				<% if plans.contract_type == 1%>
+					<%= image_tag("cart1.jpg",class: "card-img-top", size: "200x200", alt: "...")%>
+				<% elsif plans.contract_type == 2 %>
+					<%= image_tag("cart2.jpg",class: "card-img-top", size: "200x200", alt: "...")%>
+				<% else %>
+					<%= image_tag("cart3.jpg",class: "card-img-top", size: "200x200", alt: "...")%>
+				<% end %>
+					<div class="card-body card-index text-center">
+						<p class="card-text">Precio: $<%= plans.price %> </p>
+						<p class="card-text">La duracion del plan <%= plans.duration %> mes o meses</p>
+						<p class="card-text"><%= plans.description %> </p>
+						<a href="<%= new_plan_contract_path(plans)%>" class="btn btn-success">Contratar</a>
+					</div>
 			</div>
 		</div>
 	<% end %>
