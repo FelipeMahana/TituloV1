@@ -19,22 +19,22 @@ Result.destroy_all
 #Plan.create(price: (precio del plan), duration: (duracion en meses del plan), contract_type: ((valor de 1 a 3), describe si el plan es rutina entrenamiento, plan nutricional o ambos), description: (Descripcion del plan a contratar(en que consiste)))
 
 #plan 1 mes entrenamiento solo
-plan1 = Plan.create(price: 60, duration: 1, contract_type: 1, description: Faker::Lorem.paragraph)
+plan1 = Plan.create(price: 60, duration: 1, contract_type: 1, description: 'Permite tener acceso a un experto en entrenamiento con el cual podrás mantener contacto, este te guiara con una rutina de entrenamiento, pensada en ayudarte a lograr tus metas.')
 
 #plan 1 mes nutricion sola
-plan2 = Plan.create(price: 60, duration: 1, contract_type: 2, description: Faker::Lorem.paragraph)
+plan2 = Plan.create(price: 60, duration: 1, contract_type: 2, description: 'Permite tener acceso a un experto en nutrición con el cual podrás mantener contacto, este te guiara con un plan nutricional, pensado en ayudarte a lograr tus metas')
 #plan 1 mes entrenamiento y nutricion
 
-plan3 = Plan.create(price: 110, duration: 1, contract_type: 3, description: Faker::Lorem.paragraph)
+plan3 = Plan.create(price: 110, duration: 1, contract_type: 3, description: 'Permite tener una mezcla de los dos planes, con lo cual obtendrás una rutina de entrenamiento, acompañada de un plan nutricional, pensado en ayudarte a lograr tus metas.')
 
 #plan 3 meses entrenamiento solo
-plan4 = Plan.create(price: 160, duration: 3, contract_type: 1, description: Faker::Lorem.paragraph)
+plan4 = Plan.create(price: 160, duration: 3, contract_type: 1, description: 'Permite tener acceso a un experto en entrenamiento con el cual podrás mantener contacto, este te guiara con una rutina de entrenamiento, pensada en ayudarte a lograr tus metas.')
 
 #plan 3 meses nutricion  sola
-plan5 = Plan.create(price: 160, duration: 3, contract_type: 2, description: Faker::Lorem.paragraph)
+plan5 = Plan.create(price: 160, duration: 3, contract_type: 2, description: 'Permite tener acceso a un experto en nutrición con el cual podrás mantener contacto, este te guiara con un plan nutricional, pensado en ayudarte a lograr tus metas')
 
 #plan 3 meses entrenamiento y nutricion
-plan6 = Plan.create(price: 300, duration: 3, contract_type: 3, description: Faker::Lorem.paragraph)
+plan6 = Plan.create(price: 300, duration: 3, contract_type: 3, description: 'Permite tener una mezcla de los dos planes, con lo cual obtendrás una rutina de entrenamiento, acompañada de un plan nutricional, pensado en ayudarte a lograr tus metas.')
 
 ###Definiendo Array de categoría
 categoryArray = ['100 mts', '200 mts', '400 mts', '800 mts', '1500 mts', '4 x 100 mts', '4 x 400 mts']

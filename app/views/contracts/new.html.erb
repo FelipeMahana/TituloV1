@@ -1,8 +1,8 @@
 <br><br><br>
-<h4>Información Básica</h4>
 
 <div class="row contracts-new">
 	<div class="col-md-4 mb-4 form-group">
+		<h4>Información Básica</h4>
 		<%=form_with(model: [@plan, @contract], local: true) do |form| %>
 			<div class="field form-text form-group">
 				<%=form.label :peso %>
@@ -44,17 +44,19 @@
 
 	<div class="offset-2 col-md-4 mb-4">
 		<h5>Plan Contratado</h5>
-		<div class="card">
-			<div class="card-body text-center">
+		<div class="card border-dark mb-3">
+			<div class="card-header text-center">
 				<% if @plan.contract_type == 1%>
-					<h5 class="card-title"> Plan Entrenamiento </h5>
+					<h5> Plan Entrenamiento </h5>
 				<% elsif @plan.contract_type == 2 %>
-					<h5 class="card-title"> Plan Nutricion </h5>
+					<h5> Plan Nutricion </h5>
 				<% else %>
-					<h5 class="card-title"> Plan Entrenamiento con nutricion </h5>
+					<h5> Plan Entrenamiento con nutricion </h5>
 				<% end %>
-				<p class="card-title">Precio: $<%= @plan.price %> </p>
-				<p class="card-text">La duracion del plan <%= @plan.duration %> mes o meses</p>
+			</div>
+				<div class="card-body">
+				<p class="card-text">Precio: $<%= @plan.price %> </p>
+				<p class="card-text">La duracion del plan <%= @plan.duration %> mes(es)</p>
 				<p class="card-text"><%= @plan.description %> </p>
 		 	</div>
 		</div>
