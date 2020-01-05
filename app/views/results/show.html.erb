@@ -1,6 +1,29 @@
 <br><br><br>
 <p id="notice"><%= notice %></p>
 
+<h4>Comprobacion</h4>
+
+<div class="row">
+	<div class="col-md-6 mb-4">
+		<h5>Datos Resultado</h5>
+		<div class="card">
+			<div class="card-body">
+				<h5 class="card-title"> Fecha: <%= @result.date %> </h5>
+				<p class="card-text"> 100 mts:<%= @result.hundred_mts %> </p>
+				<p class="card-text"> 200 mts: <%= @result.two_hundred_mts %> </p>
+				<p class="card-text"> 300 mts: <%= @result.three_hundred_mts %> </p>
+				<p class="card-text"> 400 mts: <%= @result.four_hundred_mts %> </p>
+				<p class="card-text"> 800 mts: <%= @result.eight_hundred_mts %> </p>
+				<p class="card-text"> 1000 mts: <%= @result.thousand_mts %> </p>
+				<p class="card-text"> 1500 mts: <%= @result.thousand_five_hundred_mts %> </p>
+				<p class="card-text"> Test cooper: <%= @result.cooper_test %> </p>
+				<p class="card-text"> sentadillas: <%= @result.squat_rm %> </p>
+		 	</div>
+		</div>
+	</div>
+</div>
+
+<!--
 <p>
   <b>Fecha:</b>
   <%= @result.date %>
@@ -50,9 +73,9 @@
   <b>Squat rm:</b>
   <%= @result.squat_rm %>
 </p>
+-->
 
+<%#= link_to 'Edit', edit_user_result_path(@result.user, @result) %>
+<%#= link_to 'Back', user_results_path(@result.user) %>
 
-<%= link_to 'Edit', edit_user_result_path(@result.user, @result) %> |
-<%= link_to 'Back', user_results_path(@result.user) %>
-|
-<%= link_to 'volver perfil', profile_path %>
+<%= link_to 'Volver perfil', profile_path %>

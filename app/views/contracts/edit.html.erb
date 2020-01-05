@@ -1,65 +1,64 @@
-<h4>Formualrio Segunda parte</h4>
-<h4>Confirmar Datos</h4>
+<br><br><br>
 
-<!-- eliminar de base de datos bmi, karvonen -->
-
-<div class="row">	
-	<div class="col-md-4 mb-4">
+<div class="row contracts-new">
+	<div class="col-md-4 mb-4 form-group">
+		<h4>Información Básica</h4>
 		<%=form_with(model: [@plan, @contract], local: true) do |form| %>
-			<%=form.label :peso %>
-			<em>(Kg)</em> <br>
-			<%=form.number_field :weight %>
-			<br>
-			<%=form.label :estatura %>
-			<em>(Cms)</em> <br>
-			<%=form.number_field :height %>
-			<br>
-			<%=form.label :edad %> <br>
-			<%=form.number_field :age, in: 1...131 %>
-			<br>
-			<%=form.label :porcentaje_de_grasa %>
-			<em>(Opcional)</em> <br>
-			<%=form.number_field :fat_percentage, in: 1...101 %>
-			<br>
-			<%=form.label :sexo %> <br>
-			<%=form.select(:sex, options_for_select([['Hombre', 1], ['Mujer', 2]])) %>
-			<br>
-			<%=form.label :nivel_actividad_fisica %> <br>
-			<%=form.select(:activity_level, options_for_select([['Sedentario (trabajo oficina)', 1], ['Ejercicio Liviano(1-2 dias/semana)', 2], ['Ejercicio Moderado(3-5 dias/semana)', 3], ['Ejercicio Pesado(6-7 dias/semana)', 4], ['Atleta', 5]])) %>
-			<br>
-			<%=form.label :enfermedades %>
-			<em>(Opcional)</em> <br>
-			<%=form.text_field :disease %>
-			<br>
-			<%=form.label :alergias %>
-			<em>(Opcional)</em> <br>
-			<%=form.text_field :allergies %>
-			<br>
-			<%=form.label :objetivo %> <br>
-			<%=form.text_area :goal %>
-			<br>
-			<%= form.submit 'Pagar' %>
-			<br>
-			<%= link_to 'volver a index', root_path %>
+			<div class="field form-text form-group">
+				<%=form.label :peso %>
+				<em>(Kg)</em>
+				<%=form.number_field :weight, in: 30...200, placeholder: 'Ingrese Peso', class: 'form-control', required: true %>
+			</div>
+			<div class="field form-text form-group">
+					<%=form.label :estatura %>
+					<em>(Cms)</em>
+					<%=form.number_field :height, in: 55...273, placeholder: 'Ingrese Estatura', class: 'form-control', required: true %>
+			</div>
+			<div class="field form-text form-group">
+				<%=form.label :edad %>
+				<%=form.number_field :age, in: 13...131, placeholder: 'Ingrese Edad', class: 'form-control', required: true %>
+			</div>
+			<div class="field form-text form-group ">
+				<%=form.label :sexo %>
+				<%=form.select(:sex, options_for_select([['Hombre', 1], ['Mujer', 2]]),{}, {class: 'form-control'}) %>
+			</div>
+			<div class="field form-text form-group ">
+				<%=form.label :categoría %>
+				<%=form.select(:category, options_for_select([['100 metros', '100 mts'], ['200 metros', '200 mts'], ['400 metros', '400 mts'], ['800 metros', '800 mts'], ['1500 metros', '1500 mts'], ['4 x 100 metros', '4 x 100 mts'], ['4 x 400 metros', '4 x 400 mts']]),{}, {class: 'form-control'}) %>
+			</div>
+			<div class="field form-text form-group">
+				<%=form.label :objetivo %>
+				<%=form.text_area :goal, placeholder: 'Ingrese Objetivo', class: 'form-control', required: true %>
+			</div>
+			<div class="field form-text text-muted form-group">
+				<%=form.label :porcentaje_de_grasa %>
+				<em>(Opcional)</em>
+				<%=form.number_field :fat_percentage, in: 4...101, placeholder: 'Ingrese % Grasa', class: 'form-control' %>
+			</div>
+			<div class="field form-group">
+				<%= form.submit 'Editar', class: 'btn btn-success' %>
+			</div>
+			<%= link_to 'Volver a Perfil', profile_path %>
 		<% end %>
 	</div>
 
-	
 	<div class="offset-2 col-md-4 mb-4">
 		<h5>Plan Contratado</h5>
-		<div class="card">
-			<div class="card-body text-center">
+		<div class="card border-dark mb-3">
+			<div class="card-header text-center">
 				<% if @plan.contract_type == 1%>
-					<h5 class="card-title"> Plan Entrenamiento </h5>
+					<h5> Plan Entrenamiento </h5>
 				<% elsif @plan.contract_type == 2 %>
-					<h5 class="card-title"> Plan Nutricion </h5>
+					<h5> Plan Nutricion </h5>
 				<% else %>
-					<h5 class="card-title"> Plan Entrenamiento con nutricion </h5>
+					<h5> Plan Entrenamiento con nutricion </h5>
 				<% end %>
-				<p class="card-title">Precio: $<%= @plan.price %> </p>
-				<p class="card-text">La duracion del plan <%= @plan.duration %> mes o meses</p>
+			</div>
+				<div class="card-body">
+				<!--<p class="card-text">Precio: $<%#= @plan.price %> </p>-->
+				<p class="card-text">La duracion del plan <%= @plan.duration %> mes(es)</p>
 				<p class="card-text"><%= @plan.description %> </p>
 		 	</div>
-		</div>		  
+		</div>
 	</div>
 </div>

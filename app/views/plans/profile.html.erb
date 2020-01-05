@@ -37,6 +37,9 @@
 										<p class="card-text">Peso: <%= current_user.contracts.last.weight %> kg</p>
 										<p class="card-text">Estatura: <%= current_user.contracts.last.height %> cms </p>
 								</div>
+								<div class="card-footer ">
+									<%= link_to "Editar Datos", edit_plan_contract_path(current_user.plan_ids ,current_user.contract_ids), class: "btn btn-outline-dark" %>
+								</div>
 							</div>
 					</div>
 					<div class="col-md-6 ">
@@ -83,15 +86,15 @@
 				<!--if program present-->
 				<% if current_user.contracts.last.programs.last.present? %>
 					<% fecha_inicial = current_user.contracts.last.programs.last.created_at%>
-					debuggeo penca
-					<%= fecha_inicial.strftime('%d/%m/%Y') %>
+					<!--Borrar-->
+					<%#= fecha_inicial.strftime('%d/%m/%Y') %>
 					<!---->
 					<% unless current_user.contracts.last.plan.nil? %>
 						<% duration_plans_month=current_user.contracts.last.plan.duration.month %>
 					<% end %>
 					<!---->
 					<% fecha_vencimiento = fecha_inicial + duration_plans_month %>
-					<%= fecha_vencimiento.strftime('%d/%m/%Y') %>
+					<%#= fecha_vencimiento.strftime('%d/%m/%Y') %>
 					<!--if FA<FV-->
 					<% if fecha_actual < fecha_vencimiento %>
 						<% if current_user.contracts.last.try(:programs).present? %>
@@ -175,7 +178,18 @@
 			</div>
 		</div>
 	<% else %>
-		<h1>No a seleccionado ningun plan</h1>
+		<div class="col-md-6 mb-4 offset-md-4">
+			<div class="card border-danger bg-warning mb-3 " style="max-width: 18rem;">
+	  		<div class="card-header">Perfil</div>
+	  			<div class="card-body text-danger">
+	    			<h5 class="card-title">Perfil No Encontrado</h5>
+	    			<p class="card-text">Usted no tiene contratado una rutina, por lo que no tiene acceso a los datos de perfil y analizáis de resultados, si le gustaría iniciar uno, apreté el siguiente botón para revisar los planes.</p>
+	  			</div>
+					<div class="card-footer ">
+						<%= link_to "Comienza acá!", root_path(anchor: 'plans'), class: "btn btn-danger" %>
+					</div>
+			</div>
+		</div>
 	<%end%>
 </div>
 <br>

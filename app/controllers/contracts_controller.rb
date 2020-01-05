@@ -18,12 +18,8 @@ class ContractsController < ApplicationController
 
 	def update
 		@contract.plan_id = params[:plan_id]
-
-		#@contract.pending = true
-		#@contract.update(set_params)
-
-
-		#normal
+		@contract.update(set_params)
+		redirect_to profile_path
 		#redirect_to plan_contract_path(@contract.plan_id, @contract)
 	end
 

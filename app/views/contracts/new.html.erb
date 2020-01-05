@@ -7,7 +7,7 @@
 			<div class="field form-text form-group">
 				<%=form.label :peso %>
 				<em>(Kg)</em>
-				<%=form.number_field :weight, in: 10...200, placeholder: 'Ingrese Peso', class: 'form-control', required: true %>
+				<%=form.number_field :weight, in: 30...200, placeholder: 'Ingrese Peso', class: 'form-control', required: true %>
 			</div>
 			<div class="field form-text form-group">
 					<%=form.label :estatura %>
@@ -16,7 +16,7 @@
 			</div>
 			<div class="field form-text form-group">
 				<%=form.label :edad %>
-				<%=form.number_field :age, in: 1...131, placeholder: 'Ingrese Edad', class: 'form-control', required: true %>
+				<%=form.number_field :age, in: 13...131, placeholder: 'Ingrese Edad', class: 'form-control', required: true %>
 			</div>
 			<div class="field form-text form-group ">
 				<%=form.label :sexo %>
@@ -33,7 +33,7 @@
 			<div class="field form-text text-muted form-group">
 				<%=form.label :porcentaje_de_grasa %>
 				<em>(Opcional)</em>
-				<%=form.number_field :fat_percentage, in: 1...101, placeholder: 'Ingrese % Grasa', class: 'form-control' %>
+				<%=form.number_field :fat_percentage, in: 4...101, placeholder: 'Ingrese % Grasa', class: 'form-control' %>
 			</div>
 			<div class="field form-group">
 				<%= form.submit 'Crear', class: 'btn btn-success' %>
@@ -55,7 +55,7 @@
 				<% end %>
 			</div>
 				<div class="card-body">
-				<p class="card-text">Precio: $<%= @plan.price %> </p>
+				<!--<p class="card-text">Precio: $<%#= @plan.price %> </p>-->
 				<p class="card-text">La duracion del plan <%= @plan.duration %> mes(es)</p>
 				<p class="card-text"><%= @plan.description %> </p>
 		 	</div>
