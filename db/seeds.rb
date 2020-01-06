@@ -39,9 +39,12 @@ plan6 = Plan.create(price: 300, duration: 3, contract_type: 3, description: 'Per
 ###Definiendo Array de categoría
 categoryArray = ['100 mts', '200 mts', '400 mts', '800 mts', '1500 mts', '4 x 100 mts', '4 x 400 mts']
 
-###Creacion de usuario profesor###
+### ~~~~Creacion de usuario profesor~~~~ ###
 User.create(name: "entrenador1", email: "entrenador1@gmail.com", password: "123123", role: 'admin')
 User.create(name: "entrenador2", email: "entrenador2@gmail.com", password: "123123", role: 'admin')
+
+### ~~~~Creacion usuario admin~~~~ ###
+AdminUser.create!(email: 'admin@admin.com', password: 'password', password_confirmation: 'password') #if Rails.env.development?
 
 ### ~~~~Creacion contenido generico contrato~~~~ ###
 fecha = DateTime.now
