@@ -20,6 +20,7 @@
 			</div>
 			<div class="field form-text form-group ">
 				<%=form.label :sexo %>
+				<em>(Hombre por defecto)</em>
 				<%=form.select(:sex, options_for_select([['Hombre', 1], ['Mujer', 2]]),{}, {class: 'form-control'}) %>
 			</div>
 			<div class="field form-text form-group ">

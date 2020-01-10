@@ -52,7 +52,8 @@ class ResultsController < ApplicationController
     @result = @user.results.build(result_params)
     @result.date = DateTime.now.strftime "%d/%m/%Y"
     if @result.save
-      redirect_to([@result.user, @result], notice: 'Result was successfully created.')
+      redirect_to profile_path(), notice: 'Result was successfully created.'
+      #redirect_to([@result.user, @result], notice: 'Result was successfully created.') ideal
     else
       render action: 'new'
     end

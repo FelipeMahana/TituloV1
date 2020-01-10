@@ -88,19 +88,15 @@
 <% else %>
 
 	<div class="row">
-		<div class="col-md-4 mb-4">
 			<%=form_with(model: [@plan, @contract, @user ,@program], local: true) do |form| %>
 				<%=form.label :entrenamiento %> <br>
-				<%=form.text_area(:training, rows: 20, cols: 50, placeholder: 'Ingrese Rutina Entrenamiento', class: 'form-control') %>
-		</div>
-		<div class="offset-md-2 col-md-4 mb-4">
+				<%=form.text_area(:training, rows: 10, cols: 40, placeholder: 'Ingrese Rutina Entrenamiento', class: 'form-control') %>
 				<%=form.label :nutrición %> <br>
-				<%=form.text_area(:nutrition, rows: 20, cols: 50, placeholder: 'Ingrese Plan Nutricional', class: 'form-control') %>
-		</div>
-	</div>
+				<%=form.text_area(:nutrition, rows: 10, cols: 50, placeholder: 'Ingrese Plan Nutricional', class: 'form-control') %>
+				<br>
 				<%= form.submit 'Crear', class: 'btn btn-success' %>
 				<br>
 				<%= link_to 'Volver a contratos', user_contracts_path %>
 			<% end %>
-
+	</div>
 <% end %>

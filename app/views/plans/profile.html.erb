@@ -37,9 +37,12 @@
 										<p class="card-text">Peso: <%= current_user.contracts.last.weight %> kg</p>
 										<p class="card-text">Estatura: <%= current_user.contracts.last.height %> cms </p>
 								</div>
-								<div class="card-footer ">
-									<%= link_to "Editar Datos", edit_plan_contract_path(current_user.plan_ids ,current_user.contract_ids), class: "btn btn-outline-dark" %>
-								</div>
+								<!-- Parece traer problemas-->
+								<%# if current_user.contracts.last.programs.last.present? %>
+									<div class="card-footer ">
+										<%= link_to "Editar Datos", edit_plan_contract_path(current_user.plan_ids ,current_user.contract_ids), class: "btn btn-outline-dark" %>
+									</div>
+								<%# end %>
 							</div>
 					</div>
 					<div class="col-md-6 ">

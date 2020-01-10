@@ -36,7 +36,8 @@ class ContractsController < ApplicationController
     end
 		@contract.save
 		if @contract.save
-             redirect_to plan_contract_path(@contract.plan.id, @contract), notice: 'Se creo contrato con exito'
+             redirect_to root_path(), notice: 'Se creo contrato con exito'
+						 #redirect_to plan_contract_path(@contract.plan.id, @contract), notice: 'Se creo contrato con exito' show
        else
              redirect_to new_plan_contract_path(@contract.plan_id), notice: 'No se pudo crear contrato'
        end
