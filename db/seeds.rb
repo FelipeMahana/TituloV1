@@ -40,13 +40,14 @@ plan6 = Plan.create(price: 300, duration: 3, contract_type: 3, description: 'Per
 categoryArray = ['100 mts', '200 mts', '400 mts', '800 mts', '1500 mts', '4 x 100 mts', '4 x 400 mts']
 
 ### ~~~~Creacion de usuario profesor~~~~ ###
-User.create(name: "entrenador1", email: "entrenador1@gmail.com", password: "123123", role: 'admin')
-User.create(name: "entrenador2", email: "entrenador2@gmail.com", password: "123123", role: 'admin')
+entrenador1 = User.create(name: "entrenador1", email: "entrenador1@gmail.com", password: "123123", role: 'admin')
+entrenador2 = User.create(name: "entrenador2", email: "entrenador2@gmail.com", password: "123123", role: 'admin')
 
 ### ~~~~Creacion contenido generico contrato~~~~ ###
 fecha = DateTime.now
 
-15.times do |i|
+### ~~~~Creacion usuario inicial~~~~ ###
+11.times do |i|
 	usuario = User.create(name: "usuario#{i}", email: "usuario#{i}@gmail.com", password: "123123")
 	12.times do |j|
 		#Bueno
@@ -54,9 +55,27 @@ fecha = DateTime.now
 		#Malo
 		result = Result.create(date: (fecha << j), hundred_mts: rand(13..20), two_hundred_mts: rand(25..40), three_hundred_mts: rand(42..55), four_hundred_mts: rand(51..60), eight_hundred_mts: rand(110..120),thousand_mts: rand(131..150), thousand_five_hundred_mts: rand(273..300), cooper_test: rand(2000..3000), squat_rm: rand(100..160), user: usuario)
 	end
-	contrato = Contract.create(weight: rand(30..150), height: rand(60..230),goal: Faker::Lorem.paragraph, age: rand(10..100), sex:rand(1..2), pending: true, category: categoryArray.sample, user: usuario, plan: plan3)
-
+	contrato = Contract.create(weight: rand(30..130), height: rand(60..230),goal: Faker::Lorem.paragraph, age: rand(13..70), sex:rand(1..2), pending: true, category: categoryArray.sample, user: usuario, plan: plan3)
 end
+
+### ~~~~Creacion usuario listo~~~~ ###
+2.times do |i|
+	usuario = User.create(name: "usuarioListo#{i}", email: "listo#{i}@gmail.com", password: "123123")
+	12.times do |j|
+		#Bueno
+		result = Result.create(date: (fecha << j), hundred_mts: rand(10..16), two_hundred_mts: rand(19..35), three_hundred_mts: rand(37..50), four_hundred_mts: rand(46..55), eight_hundred_mts: rand(100..115),thousand_mts: rand(120..140), thousand_five_hundred_mts: rand(260..285), cooper_test: rand(1000..2500), squat_rm: rand(150..250), user: usuario)
+		#Malo
+		result = Result.create(date: (fecha << j), hundred_mts: rand(13..20), two_hundred_mts: rand(25..40), three_hundred_mts: rand(42..55), four_hundred_mts: rand(51..60), eight_hundred_mts: rand(110..120),thousand_mts: rand(131..150), thousand_five_hundred_mts: rand(273..300), cooper_test: rand(2000..3000), squat_rm: rand(100..160), user: usuario)
+	end
+	contrato = Contract.create(weight: rand(30..130), height: rand(60..230),goal: Faker::Lorem.paragraph, age: rand(13..70), sex:rand(1..2), pending: false, category: categoryArray.sample, user: usuario, plan: plan3)
+	programCaducado = Program.create(coach_mail: entrenador2.email, coach_name: entrenador2.name, nutrition: Faker::Lorem.paragraph, training: Faker::Lorem.paragraph, contract: contrato)
+end
+
+### ~~~~Creacion usuario vencido~~~~ ###
+usuarioCaducado = User.create(name: "caducado", email: "caducado@gmail.com", password: "123123")
+contratoCaducado = Contract.create(weight: rand(30..130), height: rand(60..230),goal: Faker::Lorem.paragraph, age: rand(10..70), sex:rand(1..2), pending: false, category: categoryArray.sample, user: usuarioCaducado, plan: plan3)
+entrenadorCaducado = User.create(name: "entrenador3", email: "entrenador3@gmail.com", password: "123123", role: 'admin')
+programCaducado = Program.create(coach_mail: entrenadorCaducado.email, coach_name: entrenadorCaducado.name, nutrition: 'nutricion caducada',training: 'nutricion caducada' ,created_at: (fecha << 7) , contract: contratoCaducado)
 
 ### ~~~~Creacion usuario admin~~~~ ###
 AdminUser.create!(email: 'admin@admin.com', password: 'password', password_confirmation: 'password') #if Rails.env.development?

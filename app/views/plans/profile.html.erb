@@ -156,9 +156,13 @@
 					<% else %>
 						<div class="row">
 							<div class="col-md-6 mb-6">
-								<div class="card border-dark mb-3">
-									<div class="card-body">
+								<div class="card border-dark bg-info mb-3">
+									<div class="card-body ">
+										<h5 class="card-title">Perfil Vencido</h5>
 										<p class="card-text">Tu plan se encuentra vencido, por favor actualizar</p>
+									</div>
+									<div class="card-footer ">
+										<%= link_to "Actualizar acá!", root_path(anchor: 'plans'), class: "btn btn-light" %>
 									</div>
 								</div>
 							</div>
