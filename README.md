@@ -1,26 +1,49 @@
 # README
 
-* Demo: https://nameless-waters-24582.herokuapp.com/ 
+Este Proyecto podra encontrarlo no terminado pero funcional en https://entrenamiento-eficiente.herokuapp.com
+Faltaria agregar un Mailer y Arreglar el UI/UX
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+* Actualizacion  2021
+Se agrego .ruby-version para intentar depurar los problemas
+Actualmente tiene problemas con la actualizacion de las gemas que rompen el programa principalmente Sassc
 
-Things you may want to cover:
+## Requisitos Basicos
 
-* Ruby version
+* Ruby version 2.7.2
+* Rails version 5.1.5
+* Bundle 1.17.3
+* NodeJS y Yarn
 
-* System dependencies
+## Correr Programa
 
-* Configuration
+* Clonar repositorio correspondiente
 
-* Database creation
+```bash
+git clone git@github.com:FelipeMahana/TituloV1.git
+```
 
-* Database initialization
+* Installar todas las dependencias
 
-* How to run the test suite
+```bash
+bundle install
+```
 
-* Services (job queues, cache servers, search engines, etc.)
+* Crear bd y migrar schema
 
-* Deployment instructions
+```bash
+rake db:create
+rake db:migrate
+```
 
-* ...
+* Installar dependencias de javascript
+
+```bash
+yarn install
+```
+
+* Ahora, correr aplicacion
+
+```bash
+rails s
+```
+
