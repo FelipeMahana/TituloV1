@@ -41,8 +41,6 @@ gem 'devise'
 gem 'faker'
 #Paginacion tablas
 gem 'kaminari'
-#Crear modelo entidad realcion
-gem 'rails-erd', require: false, group: :development
 #NestedScaffold automatico
 gem 'nested_scaffold'
 #Graficos
